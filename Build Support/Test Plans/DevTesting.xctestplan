@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "6847A465-7D34-481F-B686-0C0F6FDCA81E",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:",
+          "identifier" : "DevTesting",
+          "name" : "DevTesting"
+        }
+      ]
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "DevTestingTests",
+        "name" : "DevTestingTests"
+      }
+    }
+  ],
+  "version" : 1
+}
