@@ -18,4 +18,5 @@ This is the first release of DevTesting. The initial feature set includes
       - Integer types
       - Optionals
       - Strings
+      - URLs, URL components, and URL query items
   - `Stub` and `ThrowingStub` provide stubbing and spying functionality for your mock objects.

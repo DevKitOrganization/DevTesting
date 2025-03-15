@@ -1,9 +1,7 @@
 # DevTesting
 
 DevTesting is a small Swift 6 package that contains useful additions for writing tests with [Swift
-Testing][SwiftTesting] or XCTest.
-
-[SwiftTesting]: https://github.com/swiftlang/swift-testing/
+Testing](https://github.com/swiftlang/swift-testing/).
 
   - `SeedableRandomNumberGenerator` is a random number generator that can be seeded to enable
     repeatable tests with random data.
@@ -17,6 +15,7 @@ Testing][SwiftTesting] or XCTest.
       - Integer types
       - Optionals
       - Strings
+      - URLs, URL components, and URL query items
   - `Stub` and `ThrowingStub` provide stubbing and spying functionality for your mock objects.
 
 

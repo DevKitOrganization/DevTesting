@@ -104,7 +104,7 @@ extension RandomValueGenerating {
     public mutating func randomCase<CaseIterableType>(
         of type: CaseIterableType.Type
     ) -> CaseIterableType?
-    where CaseIterableType : CaseIterable {
+    where CaseIterableType: CaseIterable {
         return CaseIterableType.random(using: &randomNumberGenerator)
     }
 
@@ -194,13 +194,13 @@ extension RandomValueGenerating {
 
 
     // MARK: - Optionals
-    
+
     /// Randomly returns a value or `nil`.
     ///
     /// - Parameter value: An autoclosure that returns the non-`nil` value. This closure is only executed if the value
     ///   will be returned. If `nil` will be returned, it will not be called.
-    public mutating func randomOptional<Wrapped>(_ generator: @autoclosure () -> Wrapped) -> Wrapped? {
-        return Optional.random(generator(), using: &randomNumberGenerator)
+    public mutating func randomOptional<Wrapped>(_ value: @autoclosure () -> Wrapped) -> Wrapped? {
+        return Optional.random(value(), using: &randomNumberGenerator)
     }
 
 
@@ -252,5 +252,57 @@ extension RandomValueGenerating {
             count: count ?? Int.random(in: 5 ... 10, using: &randomNumberGenerator),
             using: &randomNumberGenerator
         )
+    }
+
+
+    // MARK: - URLs
+
+    /// Returns a random URL.
+    ///
+    /// See ``Foundation/URL/random(includeFragment:includeQueryItems:using:)`` for more information.
+    ///
+    /// - Parameters:
+    ///   - includeFragment: Whether the components should include a fragment. If `nil`, the function will randomly
+    ///     include a fragment or not.
+    ///   - includeQueryItems: Whether the components should include query items. If `nil`, the function will randomly
+    ///     include query items or not.
+    public mutating func randomURL(
+        includeFragment: Bool? = nil,
+        includeQueryItems: Bool? = nil
+    ) -> URL {
+        return URL.random(
+            includeFragment: includeFragment,
+            includeQueryItems: includeQueryItems,
+            using: &randomNumberGenerator
+        )
+    }
+
+
+    /// Returns random URL components.
+    ///
+    /// See ``Foundation/URLComponents/random(includeFragment:includeQueryItems:using:)`` for more information.
+    ///
+    /// - Parameters:
+    ///   - includeFragment: Whether the components should include a fragment. If `nil`, the function will randomly
+    ///     include a fragment or not.
+    ///   - includeQueryItems: Whether the components should include query items. If `nil`, the function will randomly
+    ///     include query items or not.
+    public mutating func randomURLComponents(
+        includeFragment: Bool? = nil,
+        includeQueryItems: Bool? = nil
+    ) -> URLComponents {
+        return URLComponents.random(
+            includeFragment: includeFragment,
+            includeQueryItems: includeQueryItems,
+            using: &randomNumberGenerator
+        )
+    }
+
+
+    /// Returns a random URL query item.
+    ///
+    /// See ``Foundation/URLQueryItem/random(using:)`` for more information.
+    public mutating func randomURLQueryItem() -> URLQueryItem {
+        return URLQueryItem.random(using: &randomNumberGenerator)
     }
 }

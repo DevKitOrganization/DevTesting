@@ -299,6 +299,78 @@ struct RandomValueGeneratingTests {
             #expect(randomString == expectedString)
         }
     }
+
+
+    @Test(
+        arguments: [
+            (nil, nil),
+            (nil, false),
+            (nil, true),
+            (false, nil),
+            (false, false),
+            (false, true),
+            (true, nil),
+            (true, false),
+            (true, true),
+        ]
+    )
+    mutating func randomURLUsesRandomNumberGenerator(includeFragment: Bool?, includeQueryItems: Bool?) {
+        for _ in iterationRange {
+            let randomURL = generator.randomURL(
+                includeFragment: includeFragment,
+                includeQueryItems: includeQueryItems
+            )
+
+            let expectedURL = URL.random(
+                includeFragment: includeFragment,
+                includeQueryItems: includeQueryItems,
+                using: &rng
+            )
+
+            #expect(randomURL == expectedURL)
+        }
+    }
+
+
+    @Test(
+        arguments: [
+            (nil, nil),
+            (nil, false),
+            (nil, true),
+            (false, nil),
+            (false, false),
+            (false, true),
+            (true, nil),
+            (true, false),
+            (true, true),
+        ]
+    )
+    mutating func randomURLComponentsUsesRandomNumberGenerator(includeFragment: Bool?, includeQueryItems: Bool?) {
+        for _ in iterationRange {
+            let randomURLComponents = generator.randomURLComponents(
+                includeFragment: includeFragment,
+                includeQueryItems: includeQueryItems
+            )
+
+            let expectedURLComponents = URLComponents.random(
+                includeFragment: includeFragment,
+                includeQueryItems: includeQueryItems,
+                using: &rng
+            )
+
+            #expect(randomURLComponents == expectedURLComponents)
+        }
+    }
+
+
+    @Test
+    mutating func randomURLQueryItemRandomNumberGenerator() {
+        for _ in iterationRange {
+            let randomQueryItem = generator.randomURLQueryItem()
+            let expectedURLQueryItem = URLQueryItem.random(using: &rng)
+            #expect(randomQueryItem == expectedURLQueryItem)
+        }
+    }
 }
 
 

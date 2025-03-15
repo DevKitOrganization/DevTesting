@@ -18,9 +18,9 @@ public struct SeedableRandomNumberGenerator: RandomNumberGenerator, Sendable {
     /// The instance’s 128 bits of internal state.
     ///
     /// This state is mutated whenever ``next()`` is called or ``seed`` is set.
-    private let state: OSAllocatedUnfairLock<(UInt64, UInt64)>
+    private var state: (UInt64, UInt64)
 
-
+    
     /// Creates a new seeded random number generator with the specified seed value.
     ///
     /// The seed is used to initialize a splitmix64 pseudo-random number generator, which is then used to initialize
@@ -30,34 +30,30 @@ public struct SeedableRandomNumberGenerator: RandomNumberGenerator, Sendable {
     public init(seed: UInt64 = Date.timeIntervalSinceReferenceDate.bitPattern) {
         var splitMix64 = SplitMix64RandomNumberGenerator(state: seed)
         self.seed = seed
-        self.state = .init(initialState: (splitMix64.next(), splitMix64.next()))
+        self.state = (splitMix64.next(), splitMix64.next())
     }
 
 
     /// The random number generator’s seed.
     public var seed: UInt64 {
         didSet {
-            state.withLock { [seed] (state) in
-                var splitMix64 = SplitMix64RandomNumberGenerator(state: seed)
-                state = (splitMix64.next(), splitMix64.next())
-            }
+            var splitMix64 = SplitMix64RandomNumberGenerator(state: seed)
+            state = (splitMix64.next(), splitMix64.next())
         }
     }
 
 
     public mutating func next() -> UInt64 {
-        return state.withLock { (state) in
-            let state0 = state.0
-            var state1 = state.1
-            let result = (state0 &+ state1).rotatedLeft(by: 17) &+ state0
+        let state0 = state.0
+        var state1 = state.1
+        let result = (state0 &+ state1).rotatedLeft(by: 17) &+ state0
 
-            state1 ^= state0
+        state1 ^= state0
 
-            state.0 = state0.rotatedLeft(by: 49) ^ state1 ^ (state1 << 21)
-            state.1 = state1.rotatedLeft(by: 28)
+        state.0 = state0.rotatedLeft(by: 49) ^ state1 ^ (state1 << 21)
+        state.1 = state1.rotatedLeft(by: 28)
 
-            return result
-        }
+        return result
     }
 }
 
@@ -80,7 +76,7 @@ private struct SplitMix64RandomNumberGenerator: RandomNumberGenerator, Sendable 
         self.state = state
     }
 
-    
+
     mutating func next() -> UInt64 {
         state = state &+ 0x9e3779b97f4a7c15
 
