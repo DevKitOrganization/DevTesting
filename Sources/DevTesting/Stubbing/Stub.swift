@@ -159,7 +159,7 @@ extension ThrowingStub where ReturnType == Void {
     /// - Parameters:
     ///   - defaultError: The error that the stub will throw when the error queue is empty.
     ///   - errorQueue: A queue of errors to throw. If empty, `defaultError` is used instead.
-    public convenience init(defaultError: ErrorType?, errorQueue: [ErrorType?]) {
+    public convenience init(defaultError: ErrorType?, errorQueue: [ErrorType?] = []) {
         self.init(
             defaultResult: defaultError.map(Result.failure(_:)) ?? .success(()),
             resultQueue: errorQueue.map { $0.map(Result.failure(_:)) ?? .success(()) }
