@@ -139,6 +139,9 @@ extension ThrowingStub {
 }
 
 
+extension ThrowingStub: Sendable where Arguments: Sendable, ReturnType: Sendable { }
+
+
 // MARK: - Arguments is Void
 
 extension ThrowingStub where Arguments == Void {
