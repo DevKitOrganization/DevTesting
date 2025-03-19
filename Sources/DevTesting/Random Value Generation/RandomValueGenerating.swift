@@ -197,10 +197,9 @@ extension RandomValueGenerating {
 
     /// Randomly returns a value or `nil`.
     ///
-    /// - Parameter value: An autoclosure that returns the non-`nil` value. This closure is only executed if the value
-    ///   will be returned. If `nil` will be returned, it will not be called.
-    public mutating func randomOptional<Wrapped>(_ value: @autoclosure () -> Wrapped) -> Wrapped? {
-        return Optional.random(value(), using: &randomNumberGenerator)
+    /// - Parameter value: The value to randomly make optional.
+    public mutating func randomOptional<Wrapped>(_ value: Wrapped) -> Wrapped? {
+        return Optional.random(value, using: &randomNumberGenerator)
     }
 
 
