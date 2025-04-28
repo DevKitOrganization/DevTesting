@@ -29,8 +29,7 @@ struct URLComponents_RandomTests {
             let host = try #require(components.host)
             #expect(try hostRegex.wholeMatch(in: host) != nil)
 
-            let path = try #require(components.path)
-            #expect(try pathRegex.wholeMatch(in: path) != nil)
+            #expect(try pathRegex.wholeMatch(in: components.path) != nil)
 
             if let fragment = components.fragment {
                 #expect((3 ... 5).contains(fragment.count))
