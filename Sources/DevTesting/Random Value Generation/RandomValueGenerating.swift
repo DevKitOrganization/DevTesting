@@ -254,6 +254,14 @@ extension RandomValueGenerating {
     }
 
 
+    // MARK: - UUIDs
+
+    /// Returns a random UUID.
+    public mutating func randomUUID() -> UUID {
+        return UUID.random(using: &randomNumberGenerator)
+    }
+
+
     // MARK: - URLs
 
     /// Returns a random URL.

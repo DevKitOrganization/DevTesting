@@ -301,6 +301,14 @@ struct RandomValueGeneratingTests {
     }
 
 
+    @Test
+    mutating func randomUUIDRandomNumberGenerator() {
+        for _ in iterationRange {
+            #expect(UUID.random(using: &rng) == generator.randomUUID())
+        }
+    }
+
+
     @Test(
         arguments: [
             (nil, nil),
