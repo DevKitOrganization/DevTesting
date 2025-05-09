@@ -31,7 +31,6 @@ extension String {
     }
 
 
-
     /// Returns a random string composed of alphanumeric Basic Latin characters.
     ///
     /// Specifically, the characters used are 0-9 (U+0030–U+0039), A-Z (U+0041–U+005A), and a-z (U+0061–U+007A).
