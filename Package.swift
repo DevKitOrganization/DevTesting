@@ -3,6 +3,10 @@
 import PackageDescription
 
 
+let swiftSettings: [SwiftSetting] = [
+    .enableUpcomingFeature("ExistentialAny")
+]
+
 let package = Package(
     name: "DevTesting",
     platforms: [
@@ -24,9 +28,7 @@ let package = Package(
     targets: [
         .target(
             name: "DevTesting",
-            swiftSettings: [
-                .enableUpcomingFeature("ExistentialAny")
-            ]
+            swiftSettings: swiftSettings
         ),
         .testTarget(
             name: "DevTestingTests",
@@ -34,9 +36,7 @@ let package = Package(
                 "DevTesting",
                 .product(name: "RealModule", package: "swift-numerics"),
             ],
-            swiftSettings: [
-                .enableUpcomingFeature("ExistentialAny")
-            ]
+            swiftSettings: swiftSettings
         ),
     ]
 )
