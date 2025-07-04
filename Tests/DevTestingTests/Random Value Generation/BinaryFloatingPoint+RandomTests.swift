@@ -9,7 +9,6 @@ import DevTesting
 import Foundation
 import Testing
 
-
 struct BinaryFloatingPoint_RandomTests {
     @Test
     func halfOpenRange() throws {
@@ -64,6 +63,6 @@ struct BinaryFloatingPoint_RandomTests {
 }
 
 
-fileprivate struct CodableBinaryFloat<Value>: Codable where Value: BinaryFloatingPoint & Codable {
+private struct CodableBinaryFloat<Value>: Codable where Value: BinaryFloatingPoint & Codable {
     let value: Value
 }

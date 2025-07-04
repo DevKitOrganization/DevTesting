@@ -10,7 +10,6 @@ import Foundation
 import RealModule
 import Testing
 
-
 struct Optional_RandomTests {
     @Test
     func randomValuesAreEvenlyDistributed() {

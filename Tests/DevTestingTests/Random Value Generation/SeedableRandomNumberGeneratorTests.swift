@@ -9,7 +9,6 @@ import DevTesting
 import Foundation
 import Testing
 
-
 struct SeedableRandomNumberGeneratorTests {
     let iterationRange = 0 ..< 1000
 

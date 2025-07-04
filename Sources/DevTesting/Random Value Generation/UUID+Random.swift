@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 extension UUID {
     /// Returns a random UUID.
     ///

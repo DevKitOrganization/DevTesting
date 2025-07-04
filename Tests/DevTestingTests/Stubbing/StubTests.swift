@@ -9,7 +9,6 @@ import DevTesting
 import Foundation
 import Testing
 
-
 struct StubTests {
     @Test
     func initSetsProperties() {
@@ -60,7 +59,7 @@ struct StubTests {
         let arguments = (0 ... 5).map(String.init(_:))
         let expectedResults = resultQueue + [defaultResult]
         for (argument, expectedResult) in zip(arguments, expectedResults) {
-            let result = Result { () throws (HashableError) in
+            let result = Result { () throws(HashableError) in
                 try stub(argument)
             }
 

@@ -8,7 +8,6 @@
 import Foundation
 import os
 
-
 /// A stub for a function.
 public final class ThrowingStub<Arguments, ReturnType, ErrorType> where ErrorType: Error {
     /// A recorded call to the stub.
@@ -37,7 +36,7 @@ public final class ThrowingStub<Arguments, ReturnType, ErrorType> where ErrorTyp
     /// The stub’s mutable properties.
     private let mutableProperties: OSAllocatedUnfairLock<MutableProperties>
 
-    
+
     /// Creates a new throwing stub with the specified default result.
     ///
     /// - Parameters:
@@ -55,7 +54,7 @@ public final class ThrowingStub<Arguments, ReturnType, ErrorType> where ErrorTyp
         )
     }
 
-    
+
     /// The stub’s default result.
     ///
     /// This result is used whenever the stub is called and ``resultQueue`` is empty.
@@ -84,7 +83,7 @@ public final class ThrowingStub<Arguments, ReturnType, ErrorType> where ErrorTyp
         }
     }
 
-    
+
     /// The stub’s recorded calls.
     ///
     /// If you just need the call’s arguments, you can use ``callArguments`` instead.
@@ -92,13 +91,13 @@ public final class ThrowingStub<Arguments, ReturnType, ErrorType> where ErrorTyp
         return mutableProperties.withLockUnchecked { $0.calls }
     }
 
-    
+
     /// Clears the stub’s recorded calls.
     public func clearCalls() {
         mutableProperties.withLockUnchecked { $0.calls = [] }
     }
 
-    
+
     /// Calls the stub with the specified arguments, recording the call.
     ///
     /// If the stub’s ``resultQueue`` is empty, returns or throws ``defaultResult``. Otherwise, removes the first
@@ -107,11 +106,12 @@ public final class ThrowingStub<Arguments, ReturnType, ErrorType> where ErrorTyp
     /// - Parameter arguments: The arguments with which to call the stub.
     public func callAsFunction(_ arguments: Arguments) throws(ErrorType) -> ReturnType {
         let result = mutableProperties.withLockUnchecked { (properties) in
-            let result = if properties.resultQueue.isEmpty {
-                properties.defaultResult
-            } else {
-                properties.resultQueue.removeFirst()
-            }
+            let result =
+                if properties.resultQueue.isEmpty {
+                    properties.defaultResult
+                } else {
+                    properties.resultQueue.removeFirst()
+                }
 
             properties.calls.append(
                 .init(arguments: arguments, result: result)
@@ -131,7 +131,7 @@ extension ThrowingStub {
         return calls.map(\.arguments)
     }
 
-    
+
     /// The return values of the stub’s recorded calls.
     public var callResults: [Result<ReturnType, ErrorType>] {
         return calls.map(\.result)
@@ -139,7 +139,7 @@ extension ThrowingStub {
 }
 
 
-extension ThrowingStub: Sendable where Arguments: Sendable, ReturnType: Sendable { }
+extension ThrowingStub: Sendable where Arguments: Sendable, ReturnType: Sendable {}
 
 
 // MARK: - Arguments is Void

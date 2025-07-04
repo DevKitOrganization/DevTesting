@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 extension CaseIterable {
     /// Returns a random value of this type.
     ///

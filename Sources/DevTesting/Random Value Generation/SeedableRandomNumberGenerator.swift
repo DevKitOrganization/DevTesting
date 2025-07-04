@@ -8,7 +8,6 @@
 import Foundation
 import os
 
-
 /// An efficient, thread-safe pseudo-random number generator that can be seeded to produce repeatable results.
 ///
 /// This type is a Swift translation version of Sebastiano Vigna’s [public domain C implementation of
@@ -20,7 +19,7 @@ public struct SeedableRandomNumberGenerator: RandomNumberGenerator, Sendable {
     /// This state is mutated whenever ``next()`` is called or ``seed`` is set.
     private var state: (UInt64, UInt64)
 
-    
+
     /// Creates a new seeded random number generator with the specified seed value.
     ///
     /// The seed is used to initialize a splitmix64 pseudo-random number generator, which is then used to initialize
@@ -78,11 +77,11 @@ private struct SplitMix64RandomNumberGenerator: RandomNumberGenerator, Sendable 
 
 
     mutating func next() -> UInt64 {
-        state = state &+ 0x9e3779b97f4a7c15
+        state = state &+ 0x9e37_79b9_7f4a_7c15
 
         var z = state
-        z = (z ^ (z >> 30)) &* 0xbf58476d1ce4e5b9
-        z = (z ^ (z >> 27)) &* 0x94d049bb133111eb
+        z = (z ^ (z >> 30)) &* 0xbf58_476d_1ce4_e5b9
+        z = (z ^ (z >> 27)) &* 0x94d0_49bb_1331_11eb
         return z ^ (z >> 31)
     }
 }

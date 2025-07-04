@@ -9,7 +9,6 @@ import DevTesting
 import Foundation
 import Testing
 
-
 struct RandomValueGeneratingTests {
     private let iterationRange = 0 ..< 10
     private var generator = RandomValueGenerator()

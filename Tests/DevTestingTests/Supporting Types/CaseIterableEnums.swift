@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum UninhabitedEnum: CaseIterable {
     // Intentionally empty
 }

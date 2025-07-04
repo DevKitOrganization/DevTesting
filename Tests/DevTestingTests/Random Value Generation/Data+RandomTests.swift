@@ -9,7 +9,6 @@ import DevTesting
 import Foundation
 import Testing
 
-
 struct Data_RandomTests {
     @Test
     func randomReturnsEmptyDataWhenCountIsNonPositive() {

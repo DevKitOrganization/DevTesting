@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 extension URLQueryItem {
     /// Returns a random URL query item.
     ///
@@ -21,10 +20,12 @@ extension URLQueryItem {
                 count: Int.random(in: 3 ... 10, using: &generator),
                 using: &generator
             ),
-            value: Int.random(in: 0 ..< 10, using: &generator) == 0 ? nil : .randomAlphanumeric(
-                count: Int.random(in: 3 ... 10, using: &generator),
-                using: &generator
-            )
+            value: Int.random(in: 0 ..< 10, using: &generator) == 0
+                ? nil
+                : .randomAlphanumeric(
+                    count: Int.random(in: 3 ... 10, using: &generator),
+                    using: &generator
+                )
         )
     }
 }

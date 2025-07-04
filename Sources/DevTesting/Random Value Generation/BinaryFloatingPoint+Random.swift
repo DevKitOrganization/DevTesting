@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 extension BinaryFloatingPoint where RawSignificand: FixedWidthInteger {
     /// Returns a random value in the half-open range that almost always can be printed precisely in decimal.
     ///

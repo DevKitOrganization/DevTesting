@@ -9,7 +9,6 @@ import DevTesting
 import Foundation
 import Testing
 
-
 struct URLComponents_RandomTests {
     @Test
     func randomReturnsCorrectComponentsWhenIncludeArgumentsAreNil() throws {

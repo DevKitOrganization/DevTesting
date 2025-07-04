@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 extension String {
     /// Returns a random string composed of characters from the specified collection.
     ///
@@ -75,14 +74,14 @@ extension String {
         )
     }
 
-    
+
     /// Returns an array of characters whose Unicode scalar values correspond to those in the specified ranges.
     ///
     /// Every scalar in the range must be a valid Unicode scalar or execution will halt.
     ///
     /// - Parameter unicodeScalarRanges: The ranges of Unicode scalar values to convert to characters.
     private static func characters(
-        fromUnicodeScalarRanges unicodeScalarRanges: ClosedRange<Int> ...
+        fromUnicodeScalarRanges unicodeScalarRanges: ClosedRange<Int>...
     ) -> [Character] {
         return unicodeScalarRanges.flatMap { (unicodeScalarRange) in
             unicodeScalarRange.map { Character(UnicodeScalar($0)!) }
