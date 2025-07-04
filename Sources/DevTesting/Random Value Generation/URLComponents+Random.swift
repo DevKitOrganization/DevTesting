@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 extension URLComponents {
     /// Returns random URL components.
     ///

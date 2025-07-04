@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct HashableError: Error, Hashable {
     let id: Int
 }

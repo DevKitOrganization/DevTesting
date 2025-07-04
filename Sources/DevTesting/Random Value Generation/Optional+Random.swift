@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 extension Optional {
     /// Randomly returns a value or `nil`.
     ///

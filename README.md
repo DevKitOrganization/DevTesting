@@ -34,10 +34,18 @@ interfaces are fully documented and tested. We aim for overall test coverage ove
 
 [SwiftAPIDesignGuidelines]: https://swift.org/documentation/api-design-guidelines/
 
+### Development Setup
+
+To set up the development environment:
+
+  1. Run `Scripts/install-git-hooks` to install pre-commit hooks that automatically check code
+    formatting.
+  2. Use `Scripts/lint` to manually check code formatting at any time.
+
 
 ## Bugs and Feature Requests
 
-Find a bug? Want a new feature? Create a GitHub issue and we’ll take a look. 
+Find a bug? Want a new feature? Create a GitHub issue and we’ll take a look.
 
 
 ## License

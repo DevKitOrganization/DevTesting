@@ -20,10 +20,10 @@ let package = Package(
         .library(
             name: "DevTesting",
             targets: ["DevTesting"]
-        ),
+        )
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-numerics", from: "1.0.0"),
+        .package(url: "https://github.com/apple/swift-numerics", from: "1.0.0")
     ],
     targets: [
         .target(

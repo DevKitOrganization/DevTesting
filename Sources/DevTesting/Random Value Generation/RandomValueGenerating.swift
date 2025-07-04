@@ -6,12 +6,11 @@
 //
 
 import Foundation
-import os
 import Testing
-
+import os
 
 /// A logger used to log random seeds.
-fileprivate let randomizationLogger = Logger(subsystem: "DevTesting", category: "randomization")
+private let randomizationLogger = Logger(subsystem: "DevTesting", category: "randomization")
 
 
 /// A type that can generate random values.
@@ -36,7 +35,7 @@ fileprivate let randomizationLogger = Logger(subsystem: "DevTesting", category: 
 ///
 /// Importantly, ``makeRandomNumberGenerator(seed:)`` and ``randomSeed``’s setter log the seed (using subsystem
 /// `DevTesting` and category `randomization`), which appear in Xcode’s output and can be queried via the command-line
-/// 
+///
 public protocol RandomValueGenerating {
     /// The random number generator that the type uses to generate values.
     var randomNumberGenerator: SeedableRandomNumberGenerator { get set }

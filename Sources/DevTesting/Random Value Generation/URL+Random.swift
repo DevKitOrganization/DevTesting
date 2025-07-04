@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 extension URL {
     /// Returns a random URL.
     ///

@@ -9,7 +9,6 @@ import DevTesting
 import Foundation
 import Testing
 
-
 struct CollectionGenerationTests {
     @Test
     func indexedArrayInit() {
@@ -73,7 +72,7 @@ struct CollectionGenerationTests {
             defer { i += 1 }
             return (i, "\(i)")
         }
-        let expectedDictionary = Dictionary(uniqueKeysWithValues: (0 ..< count).map { ($0, "\($0)" ) })
+        let expectedDictionary = Dictionary(uniqueKeysWithValues: (0 ..< count).map { ($0, "\($0)") })
 
         #expect(dictionary == expectedDictionary)
     }

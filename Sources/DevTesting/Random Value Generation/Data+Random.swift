@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 extension Data {
     /// Returns a data instance filled with random bytes.
     ///

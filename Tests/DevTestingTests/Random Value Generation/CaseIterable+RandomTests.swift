@@ -9,7 +9,6 @@ import DevTesting
 import Foundation
 import Testing
 
-
 struct CaseIterable_RandomTests {
     @Test
     func randomReturnsNilForUninhabitedEnum() {
@@ -31,7 +30,7 @@ struct CaseIterable_RandomTests {
         #expect(countsByCase.count == 3)
         for (_, count) in countsByCase {
             let caseProportion = Double(count) / Double(results.count)
-            #expect(caseProportion.isApproximatelyEqual(to: 1/3, absoluteTolerance: 0.03))
+            #expect(caseProportion.isApproximatelyEqual(to: 1 / 3, absoluteTolerance: 0.03))
         }
     }
 }
