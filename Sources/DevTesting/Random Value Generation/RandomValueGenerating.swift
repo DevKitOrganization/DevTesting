@@ -25,7 +25,8 @@ private let randomizationLogger = Logger(subsystem: "DevTesting", category: "ran
 ///         @Test
 ///         mutating func testSomething() {
 ///             let string = randomBasicLatinString()
-///             let int = random(Int.self, in: 0 ... 10)
+///             let int = randomInt(in: 0 ... 10)
+///             let uin8 = random(UInt8.self, in: .min ... .max)
 ///             let bool = randomBool()
 ///             let optional = randomOptional(randomAlphanumericString())
 ///
@@ -128,7 +129,7 @@ extension RandomValueGenerating {
     ///   16 and 128 will be chosen.
     public mutating func randomData(count: Int? = nil) -> Data {
         return Data.random(
-            count: count ?? random(Int.self, in: 16 ... 128),
+            count: count ?? randomInt(in: 16 ... 128),
             using: &randomNumberGenerator
         )
     }
@@ -150,6 +151,18 @@ extension RandomValueGenerating {
     }
 
 
+    /// Returns a random `Float64` (`Double`) within the specified range.
+    ///
+    /// This function is provided as a convenience. It is equivalent to calling
+    ///
+    ///     random(Float64.self, in: range)
+    ///
+    /// - Parameter range: The half-open range in which to create a random value.
+    public mutating func randomFloat64(in range: Range<Float64>) -> Float64 {
+        return random(Float64.self, in: range)
+    }
+
+
     /// Returns a random binary floating point of the specified type within the specified range.
     ///
     /// - Parameters:
@@ -161,6 +174,18 @@ extension RandomValueGenerating {
     ) -> FloatingPoint
     where FloatingPoint: BinaryFloatingPoint, FloatingPoint.RawSignificand: FixedWidthInteger {
         return FloatingPoint.randomPrintable(in: range, using: &randomNumberGenerator)
+    }
+
+
+    /// Returns a random `Float64` (`Double`) within the specified range.
+    ///
+    /// This function is provided as a convenience. It is equivalent to calling
+    ///
+    ///     random(Float64.self, in: range)
+    ///
+    /// - Parameter range: The closed range in which to create a random value.
+    public mutating func randomFloat64(in range: ClosedRange<Float64>) -> Float64 {
+        return random(Float64.self, in: range)
     }
 
 
@@ -178,6 +203,18 @@ extension RandomValueGenerating {
     }
 
 
+    /// Returns a random `Int`  within the specified range.
+    ///
+    /// This function is provided as a convenience. It is equivalent to calling
+    ///
+    ///     random(Int.self, in: range)
+    ///
+    /// - Parameter range: The half-open range in which to create a random value.
+    public mutating func randomInt(in range: Range<Int>) -> Int {
+        return random(Int.self, in: range)
+    }
+
+
     /// Returns a random integer of the specified type within the specified range.
     ///
     /// - Parameters:
@@ -189,6 +226,18 @@ extension RandomValueGenerating {
     ) -> Integer
     where Integer: FixedWidthInteger {
         return Integer.random(in: range, using: &randomNumberGenerator)
+    }
+
+
+    /// Returns a random `Int`  within the specified range.
+    ///
+    /// This function is provided as a convenience. It is equivalent to calling
+    ///
+    ///     random(Int.self, in: range)
+    ///
+    /// - Parameter range: The closed range in which to create a random value.
+    public mutating func randomInt(in range: ClosedRange<Int>) -> Int {
+        return random(Int.self, in: range)
     }
 
 

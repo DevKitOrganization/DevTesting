@@ -104,6 +104,16 @@ struct RandomValueGeneratingTests {
 
 
     @Test
+    mutating func randomFloat64UsesRandomNumberGenerator_halfOpenRange() {
+        for _ in iterationRange {
+            let actualFloat64 = generator.randomFloat64(in: -100_000 ..< 100_000)
+            let expectedFloat64 = Float64.randomPrintable(in: -100_000 ..< 100_000, using: &rng)
+            #expect(actualFloat64 == expectedFloat64)
+        }
+    }
+
+
+    @Test
     mutating func randomFloatUsesRandomNumberGenerator_closedRange() {
         for _ in iterationRange {
             let actualFloat16 = generator.random(Float16.self, in: -1000 ... 1000)
@@ -115,6 +125,16 @@ struct RandomValueGeneratingTests {
             #expect(actualFloat32 == expectedFloat32)
 
             let actualFloat64 = generator.random(Float64.self, in: -100_000 ... 100_000)
+            let expectedFloat64 = Float64.randomPrintable(in: -100_000 ... 100_000, using: &rng)
+            #expect(actualFloat64 == expectedFloat64)
+        }
+    }
+
+
+    @Test
+    mutating func randomFloat64UsesRandomNumberGenerator_closedRange() {
+        for _ in iterationRange {
+            let actualFloat64 = generator.randomFloat64(in: -100_000 ... 100_000)
             let expectedFloat64 = Float64.randomPrintable(in: -100_000 ... 100_000, using: &rng)
             #expect(actualFloat64 == expectedFloat64)
         }
@@ -168,6 +188,16 @@ struct RandomValueGeneratingTests {
 
 
     @Test
+    mutating func randomIntUsesRandomNumberGenerator_halfOpenRange() {
+        for _ in iterationRange {
+            let actualInt = generator.randomInt(in: -1_000_000_000 ..< 1_000_000_000)
+            let expectedInt = Int.random(in: -1_000_000_000 ..< 1_000_000_000, using: &rng)
+            #expect(actualInt == expectedInt)
+        }
+    }
+
+
+    @Test
     mutating func randomIntegerRandomNumberGenerator_closedRange() {
         for _ in iterationRange {
             let actualInt8 = generator.random(Int8.self, in: -100 ... 100)
@@ -209,6 +239,16 @@ struct RandomValueGeneratingTests {
             let actualUInt = generator.random(UInt.self, in: 0 ... 1_000_000_000)
             let expectedUInt = UInt.random(in: 0 ... 1_000_000_000, using: &rng)
             #expect(actualUInt == expectedUInt)
+        }
+    }
+
+
+    @Test
+    mutating func randomIntUsesRandomNumberGenerator_closedRange() {
+        for _ in iterationRange {
+            let actualInt = generator.randomInt(in: -1_000_000_000 ... 1_000_000_000)
+            let expectedInt = Int.random(in: -1_000_000_000 ... 1_000_000_000, using: &rng)
+            #expect(actualInt == expectedInt)
         }
     }
 
