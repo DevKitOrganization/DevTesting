@@ -2,9 +2,9 @@
 
 import PackageDescription
 
-
 let swiftSettings: [SwiftSetting] = [
-    .enableUpcomingFeature("ExistentialAny")
+    .enableUpcomingFeature("ExistentialAny"),
+    .enableUpcomingFeature("MemberImportVisibility"),
 ]
 
 let package = Package(
