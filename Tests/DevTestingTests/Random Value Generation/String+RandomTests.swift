@@ -11,6 +11,17 @@ import Testing
 @testable import DevTesting
 
 struct String_RandomTests {
+    #if os(macOS)
+    @Test
+    func randomWithCharactersHaltsWhenCharactersIsEmptyAndCountIsNonZero() async {
+        await #expect(processExitsWith: .failure) {
+            var rng = SystemRandomNumberGenerator()
+            _ = String.random(withCharactersFrom: "", count: 1, using: &rng)
+        }
+    }
+    #endif
+
+
     @Test
     func randomWithCharactersReturnsEmptyWhenCharactersIsEmptyOrCountIs0() {
         var rng = SystemRandomNumberGenerator()
