@@ -67,7 +67,7 @@ reproducibility.
 
   - **Swift Numerics**: Used for `RealModule` in tests
   - **Platform Requirements**: iOS 18+, macOS 15+, tvOS 18+, visionOS 2+, watchOS 11+
-  - **Swift Version**: Requires Swift 6.1 toolchain
+  - **Swift Version**: Requires Swift 6.2 toolchain
 
 ### Testing Strategy
 

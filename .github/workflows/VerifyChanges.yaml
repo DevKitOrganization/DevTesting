@@ -14,9 +14,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Select Xcode 16.4
+      - name: Select Xcode 26.0.0
         run: |
-          sudo xcode-select -s /Applications/Xcode_16.4.0.app
+          sudo xcode-select -s /Applications/Xcode_26.0.0.app
       - name: Lint
         run: |
           Scripts/lint
@@ -70,9 +70,9 @@ jobs:
           sourcepackages-directory: .build/DerivedData/SourcePackages
           swiftpm-package-resolved-file: Package.resolved
           verbose: true
-      - name: Select Xcode 16.4
+      - name: Select Xcode 26.0.0
         run: |
-          sudo xcode-select -s /Applications/Xcode_16.4.0.app
+          sudo xcode-select -s /Applications/Xcode_26.0.0.app
       - name: Build for Testing
         run: |
           "$DEV_BUILDS"/build_and_test.sh --action build-for-testing
@@ -118,9 +118,9 @@ jobs:
       - name: Download xccovPretty output
         uses: actions/download-artifact@v4
         with:
-          name: xccovPrettyOutput-iOS
+          name: xccovPrettyOutput-macOS
       - name: Post Code Coverage Comment
         uses: thollander/actions-comment-pull-request@v3
         with:
-          file-path: xccovPretty-iOS.output
-          comment-tag: codeCoverage-iOS
+          file-path: xccovPretty-macOS.output
+          comment-tag: codeCoverage-macOS
