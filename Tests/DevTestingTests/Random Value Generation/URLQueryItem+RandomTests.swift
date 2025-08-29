@@ -7,6 +7,7 @@
 
 import DevTesting
 import Foundation
+import RealModule
 import Testing
 
 struct URLQueryItem_RandomTests {
