@@ -23,11 +23,17 @@ repository.
   - **Swift format configuration**: Uses `.swift-format` file with 4-space indentation and 120
     character line length
 
+### Platform Testing
+
+  - **Test all platforms**: `Scripts/test-all-platforms` (runs tests on iOS, macOS, tvOS, and
+    watchOS simulators using xcodebuild)
+
 ### Git Hooks
 
-  - **Install git hooks**: `Scripts/install-git-hooks` (installs pre-commit hook that runs lint
-    check)
+  - **Install git hooks**: `Scripts/install-git-hooks` (installs both pre-commit and pre-push
+    hooks)
   - **Pre-commit hook**: Automatically runs `Scripts/lint` before each commit
+  - **Pre-push hook**: Automatically runs `Scripts/test-all-platforms` before each push
 
 ### Documentation
 
@@ -74,7 +80,8 @@ reproducibility.
   - **Test Plans**: Uses `DevTesting.xctestplan` for organized test execution
   - **Coverage Target**: Aims for 99%+ test coverage
   - **Platform Testing**: Tests run on iOS, macOS, tvOS, and watchOS simulators
-  - **CI/CD**: GitHub Actions workflow with matrix strategy across platforms
+  - **CI/CD**: GitHub Actions workflow runs builds on macOS only (iOS, tvOS, and watchOS builds
+    disabled due to stability/reliability issues)
 
 ### Documentation Standards
 

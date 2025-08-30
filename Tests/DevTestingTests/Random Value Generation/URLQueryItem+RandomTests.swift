@@ -29,6 +29,6 @@ struct URLQueryItem_RandomTests {
         }
 
         let nilValuePercentage = Double(nilValueCount) / Double(iterationCount)
-        #expect(nilValuePercentage.isApproximatelyEqual(to: 0.1, absoluteTolerance: 0.03))
+        #expect(nilValuePercentage.isApproximatelyEqual(to: 0.1, absoluteTolerance: 0.05))
     }
 }

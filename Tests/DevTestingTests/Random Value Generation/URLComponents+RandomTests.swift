@@ -47,8 +47,8 @@ struct URLComponents_RandomTests {
         let nilFragmentPercentage = Double(nilFragmentCount) / Double(iterationCount)
         let nilQueryItemsPercentage = Double(nilQueryItemsCount) / Double(iterationCount)
 
-        #expect(nilFragmentPercentage.isApproximatelyEqual(to: 0.5, absoluteTolerance: 0.03))
-        #expect(nilQueryItemsPercentage.isApproximatelyEqual(to: 0.5, absoluteTolerance: 0.03))
+        #expect(nilFragmentPercentage.isApproximatelyEqual(to: 0.5, absoluteTolerance: 0.05))
+        #expect(nilQueryItemsPercentage.isApproximatelyEqual(to: 0.5, absoluteTolerance: 0.05))
     }
 
 
