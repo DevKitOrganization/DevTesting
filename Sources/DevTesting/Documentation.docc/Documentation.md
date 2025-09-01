@@ -12,14 +12,15 @@ DevTesting is a small testing package that makes it easy to test with random val
 
 ### Generating Random Values
 
+- <doc:UsingRandomValueGeneration>
 - ``RandomValueGenerating``
 - ``SeedableRandomNumberGenerator``
 
 ### Stubbing
 
+- <doc:UsingStubs>
 - ``Stub``
 - ``ThrowingStub``
-
 
 ### Collection Generation Extensions
 
@@ -37,3 +38,4 @@ DevTesting is a small testing package that makes it easy to test with random val
 - ``Foundation/URL``
 - ``Foundation/URLComponents``
 - ``Foundation/URLQueryItem``
+- ``Foundation/UUID``

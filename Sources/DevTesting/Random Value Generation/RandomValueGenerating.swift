@@ -78,11 +78,17 @@ extension RandomValueGenerating {
 
     /// Outputs the current seed value to the standard output device.
     private static func logSeed(_ seed: UInt64) {
-        let logPrefix = Test.current.map { (test) in
-            "\(test.id.moduleName).\(test.id.nameComponents.joined(separator: ".")): "
+        let fullyQualifiedTestName = Test.current.map { (test) in
+            "\(test.id.moduleName).\(test.id.nameComponents.joined(separator: "."))"
         }
+        let logPrefix = fullyQualifiedTestName.map { "\($0): " } ?? ""
 
-        randomizationLogger.log("\(logPrefix ?? "", privacy: .public)Using random seed \(seed)")
+
+        randomizationLogger.log("\(logPrefix, privacy: .public)Using random seed \(seed)")
+
+        if let fullyQualifiedTestName {
+            Attachment.record(String(seed), named: "randomSeed_\(fullyQualifiedTestName).txt")
+        }
     }
 
 
