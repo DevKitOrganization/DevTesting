@@ -13,8 +13,8 @@ extension URLComponents {
     /// The URL components are generated as follows:
     ///
     ///   - The scheme is `"https"`
-    ///   - The host is of the form `subdomain<XXXXX>.domain<XXXXX>.<tld>`. Here, _<XXXXX>_ are five random
-    ///     alphanumeric characters, and _<tld>_ is one of _com_, _edu_, _gov_, _net_, or _org_.
+    ///   - The host is of the form `subdomain«XXXXX».domain«YYYYY».«tld»`. Here, _«XXXXX»_ and _«YYYYY»_ are strings of
+    ///     five random alphanumeric characters, and _«tld»_ is one of _com_, _edu_, _gov_, _net_, or _org_.
     ///   - The path contains 1–5 components, each of which are random alphanumeric strings between 1–5 characters long.
     ///   - If the function includes fragments, the fragment is a random alphanumeric string between 3–5 characters
     ///     long.

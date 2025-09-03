@@ -17,9 +17,9 @@ automatically logs the random seeds used in each test, allowing you to reproduce
 exactly.
 
 The random value generation system integrates seamlessly with Swift Testing, automatically logging
-seeds both to the console and as test attachments. This means that when a test fails, you have
-multiple ways to capture and reuse the seed that caused the failure, making debugging much more
-straightforward than with traditional random testing approaches.
+seeds both to Apple’s Unified Logging system and as test attachments. This means that when a test 
+fails, you have multiple ways to capture and reuse the seed that caused the failure, making 
+debugging much more straightforward than with traditional random testing approaches.
 
 In this guide, we’ll explore how to use DevTesting’s random value generation effectively in your
 test suites, from basic random data creation to advanced patterns for testing complex scenarios with
@@ -51,10 +51,10 @@ and add the required property:
         }
     }
 
-The ``makeRandomNumberGenerator()`` function creates a seeded random number generator and
-automatically logs the seed for reproducibility. Each time your test runs, it will use a different
-seed (based on the current time), giving you varied test data while maintaining the ability to
-reproduce any specific run.
+The ``RandomValueGenerating/makeRandomNumberGenerator(seed:)`` function creates a seeded random  
+number generator and automatically logs the seed for reproducibility. Each time your test runs, it
+will use a different seed (based on the current time), giving you varied test data while maintaining
+the ability to reproduce any specific run.
 
 
 ### The required property
@@ -167,8 +167,9 @@ DevTesting includes generators for common Foundation types:
         let complexURL = randomURL(includeFragment: true, includeQueryItems: true)
     }
 
-The ``randomURL()`` function creates realistic URLs with random schemes, hosts, paths, and
-optionally query parameters and fragments.
+The ``RandomValueGenerating/randomURL(includeFragment:includeQueryItems:)`` function creates
+realistic URLs with random schemes,  hosts, paths, and optionally query parameters and 
+fragments.
 
 
 ### Collections
@@ -190,8 +191,9 @@ Work with collections and enumerations easily:
         let emptyResult = randomElement(in: [Int]())   // nil
     }
 
-Note that both ``randomElement(in:)`` and ``randomCase(of:)`` return optionals because they return
-`nil` when called on empty collections.
+Note that both ``RandomValueGenerating/randomElement(in:)`` and 
+``RandomValueGenerating/randomCase(of:)`` return optionals because they return `nil` when called on
+empty collections.
 
 
 ### Collection generation
@@ -232,12 +234,13 @@ seeds and provides multiple ways to reproduce test failures.
 
 ### Automatic seed logging
 
-Every time you create a random number generator with ``makeRandomNumberGenerator()``, DevTesting
-automatically logs the seed being used. This logging happens in two places:
+Every time you create a random number generator with 
+``RandomValueGenerating/makeRandomNumberGenerator(seed:)``, DevTesting automatically logs the seed
+being used. This logging happens in two places:
 
   1. **Log output**: The seed is logged using the Unified Logging system. It is logged with
      subsystem `"DevTesting"` and category `"randomization"`. This output is logged to Xcode’s
-     console.
+     console, and is also accessible via the Console app and the `log` command line tool.
 
          MyTestsTests.MyTests.testSomething(): Using random seed 4636473893658426368
 
@@ -252,7 +255,7 @@ you’re debugging interactively or analyzing results in a CI system.
 ### Setting custom seeds
 
 When you need to reproduce a specific test failure, you can override the automatic seed generation
-by setting the ``randomSeed`` property:
+by setting the ``RandomValueGenerating/randomSeed`` property:
 
     struct MyTests: RandomValueGenerating {
         var randomNumberGenerator = makeRandomNumberGenerator()
@@ -283,8 +286,8 @@ When a test fails due to random inputs, follow these steps to reproduce and debu
   1. **Find the seed**: Look for the seed in your test output or check the test attachments for the
     `randomSeed_*.txt` file.
 
-  2. **Set the seed**: Use the ``randomSeed`` property in your test to force the same sequence of
-     random values:
+  2. **Set the seed**: Use the ``RandomValueGenerating/randomSeed`` property in your test to force
+     the same sequence of random values:
 
          @Test
          mutating func testThatFailed() {

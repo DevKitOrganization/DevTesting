@@ -35,8 +35,8 @@ private let randomizationLogger = Logger(subsystem: "DevTesting", category: "ran
 ///     }
 ///
 /// Importantly, ``makeRandomNumberGenerator(seed:)`` and ``randomSeed``’s setter log the seed (using subsystem
-/// `DevTesting` and category `randomization`), which appear in Xcode’s output and can be queried via the command-line
-///
+/// `DevTesting` and category `randomization`), which appear in Xcode’s output and can be queried via the command-line.
+/// The seed value is also added as an attachment to the current test.
 public protocol RandomValueGenerating {
     /// The random number generator that the type uses to generate values.
     var randomNumberGenerator: SeedableRandomNumberGenerator { get set }
@@ -49,7 +49,9 @@ public protocol RandomValueGenerating {
 extension RandomValueGenerating {
     /// Creates and returns a new seedable random number generator with the specified seed.
     ///
-    /// Logs the seed to the standard output device before returning.
+    /// Logs the seed to a Unified Logger whose subsystem is `DevTesting` and whose category is `randomization`. This
+    /// value appear in Xcode’s output and can be viewed using the Console app or queried via the command-line. The seed
+    /// value is also added as an attachment to the current test.
     ///
     /// - Parameter seed: The seed with which to initialize the random number generator. By default, this is a value
     ///   based on the the current time.
@@ -63,7 +65,9 @@ extension RandomValueGenerating {
 
     /// The random number generator’s seed.
     ///
-    /// This property’s setter logs the new seed to the standard output device.
+    /// This property’s setter logs the seed to a Unified Logger whose subsystem is `DevTesting` and whose category is
+    /// `randomization`. This value appear in Xcode’s output and can be viewed using the Console app or queried via the
+    /// command-line. The seed value is also added as an attachment to the current test.
     public var randomSeed: UInt64 {
         get {
             return randomNumberGenerator.seed
@@ -76,7 +80,9 @@ extension RandomValueGenerating {
     }
 
 
-    /// Outputs the current seed value to the standard output device.
+    /// Logs the specified seed to the randomization logger and adds it as an attachment to the current test.
+    ///
+    /// - Parameter seed: The seed to log.
     private static func logSeed(_ seed: UInt64) {
         let fullyQualifiedTestName = Test.current.map { (test) in
             "\(test.id.moduleName).\(test.id.nameComponents.joined(separator: "."))"
