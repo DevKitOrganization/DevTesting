@@ -10,7 +10,7 @@ import os
 
 /// An efficient, thread-safe pseudo-random number generator that can be seeded to produce repeatable results.
 ///
-/// This type is a Swift translation version of Sebastiano Vigna’s [public domain C implementation of
+/// This type is a Swift translation of Sebastiano Vigna’s [public domain C implementation of
 /// xorshiro128++](https://prng.di.unimi.it/xoroshiro128plusplus.c), though that may change in the future. See [Vigna’s
 /// PRNG shootout](https://prng.di.unimi.it) for more information about the xoroshiro128++.
 public struct SeedableRandomNumberGenerator: RandomNumberGenerator, Sendable {
