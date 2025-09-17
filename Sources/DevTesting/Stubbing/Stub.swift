@@ -126,6 +126,32 @@ public final class ThrowingStub<Arguments, ReturnType, ErrorType> where ErrorTyp
 
 
 extension ThrowingStub {
+    /// Creates a new throwing stub with a default success result.
+    ///
+    /// - Parameters:
+    ///   - defaultReturnValue: The successful return value of the stub when the result queue is empty.
+    ///   - resultQueue: A queue of call results to use. If empty, `defaultResult` is used.
+    public convenience init(
+        defaultReturnValue: ReturnType,
+        resultQueue: [Result<ReturnType, ErrorType>] = []
+    ) {
+        self.init(defaultResult: .success(defaultReturnValue), resultQueue: resultQueue)
+    }
+
+
+    /// Creates a new throwing stub with a default failure result.
+    ///
+    /// - Parameters:
+    ///   - defaultError: The error that the stub throws when its result queue is empty.
+    ///   - resultQueue: A queue of call results to use. If empty, `defaultResult` is used.
+    public convenience init(
+        defaultError: ErrorType,
+        resultQueue: [Result<ReturnType, ErrorType>] = []
+    ) {
+        self.init(defaultResult: .failure(defaultError), resultQueue: resultQueue)
+    }
+
+
     /// The arguments of the stub’s recorded calls.
     public var callArguments: [Arguments] {
         return calls.map(\.arguments)
@@ -162,7 +188,7 @@ extension ThrowingStub where ReturnType == Void {
     /// - Parameters:
     ///   - defaultError: The error that the stub will throw when the error queue is empty.
     ///   - errorQueue: A queue of errors to throw. If empty, `defaultError` is used instead.
-    public convenience init(defaultError: ErrorType?, errorQueue: [ErrorType?] = []) {
+    public convenience init(defaultError: ErrorType? = nil, errorQueue: [ErrorType?] = []) {
         self.init(
             defaultResult: defaultError.map(Result.failure(_:)) ?? .success(()),
             resultQueue: errorQueue.map { $0.map(Result.failure(_:)) ?? .success(()) }
@@ -278,15 +304,5 @@ extension ThrowingStub.Call where ErrorType == Never {
         case .success(let value):
             return value
         }
-    }
-}
-
-
-// MARK: - ReturnType is Void and ErrorType is Never
-
-extension ThrowingStub where ReturnType == Void, ErrorType == Never {
-    /// Creates a new stub with an empty tuple as the default return value.
-    public convenience init() {
-        self.init(defaultReturnValue: ())
     }
 }

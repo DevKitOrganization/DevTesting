@@ -29,6 +29,42 @@ struct StubTests {
 
 
     @Test
+    func initDefaultReturnValueSetsProperties() {
+        let defaultReturnValue = 10
+        let resultQueue: [Result<Int, HashableError>] = (0 ..< 5).map { (i) in
+            i.isMultiple(of: 2) ? .success(i) : .failure(.init(id: i))
+        }
+
+        let stub = ThrowingStub<String, Int, HashableError>(
+            defaultReturnValue: 10,
+            resultQueue: resultQueue
+        )
+
+        #expect(stub.defaultResult == .success(defaultReturnValue))
+        #expect(stub.resultQueue == resultQueue)
+        #expect(stub.calls.isEmpty)
+    }
+
+
+    @Test
+    func initDefaultErrorSetsProperties() {
+        let defaultError = HashableError(id: 7)
+        let resultQueue: [Result<Int, HashableError>] = (0 ..< 5).map { (i) in
+            i.isMultiple(of: 2) ? .success(i) : .failure(.init(id: i))
+        }
+
+        let stub = ThrowingStub<String, Int, HashableError>(
+            defaultError: defaultError,
+            resultQueue: resultQueue
+        )
+
+        #expect(stub.defaultResult == .failure(defaultError))
+        #expect(stub.resultQueue == resultQueue)
+        #expect(stub.calls.isEmpty)
+    }
+
+
+    @Test
     func accessingProperties() {
         let stub = ThrowingStub<String, Int, HashableError>(defaultResult: .success(0))
 
