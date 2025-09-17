@@ -188,7 +188,7 @@ extension ThrowingStub where ReturnType == Void {
     /// - Parameters:
     ///   - defaultError: The error that the stub will throw when the error queue is empty.
     ///   - errorQueue: A queue of errors to throw. If empty, `defaultError` is used instead.
-    public convenience init(defaultError: ErrorType? = nil, errorQueue: [ErrorType?] = []) {
+    public convenience init(defaultError: ErrorType?, errorQueue: [ErrorType?] = []) {
         self.init(
             defaultResult: defaultError.map(Result.failure(_:)) ?? .success(()),
             resultQueue: errorQueue.map { $0.map(Result.failure(_:)) ?? .success(()) }
@@ -257,7 +257,7 @@ extension ThrowingStub where ErrorType == Never {
     /// - Parameters:
     ///   - defaultReturnValue: The return value of the stub when the return value queue is empty.
     ///   - returnValueQueue: A queue of values to return. If empty, `defaultReturnValue` is used.
-    public convenience init(defaultReturnValue: ReturnType, returnValueQueue: [ReturnType] = []) {
+    public convenience init(defaultReturnValue: ReturnType, returnValueQueue: [ReturnType]) {
         self.init(
             defaultResult: .success(defaultReturnValue),
             resultQueue: returnValueQueue.map(Result.success(_:))
@@ -304,5 +304,15 @@ extension ThrowingStub.Call where ErrorType == Never {
         case .success(let value):
             return value
         }
+    }
+}
+
+
+// MARK: - ReturnType is Void and ErrorType is Never
+
+extension ThrowingStub where ReturnType == Void, ErrorType == Never {
+    /// Creates a new stub with an empty tuple as the default return value.
+    public convenience init() {
+        self.init(defaultReturnValue: ())
     }
 }

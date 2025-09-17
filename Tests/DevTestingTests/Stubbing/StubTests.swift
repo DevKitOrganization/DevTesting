@@ -185,8 +185,11 @@ struct StubTests {
 
 
     @Test
-    func convenenienceInitWhenReturnTypeIsVoidAndErrorTypeIsNever() {
+    func convenenienceInitsOverloadWithoutColision() {
         let stub = Stub<Void, Void>()
+        let stub2 = Stub<Void, Int>(defaultReturnValue: 3)
+        let stub4 = ThrowingStub<Void, Void, any Error>(defaultError: nil)
+        let stub3 = ThrowingStub<Void, Int, any Error>(defaultError: HashableError(id: 2))
 
         // There’s nothing to actually test here, as the compiler guarantees everything we would test. Check the result
         // queue just for posterity
