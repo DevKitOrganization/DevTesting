@@ -1,6 +1,21 @@
 # DevTesting Changelog
 
 
+## 1.1.0: September 17, 2025
+
+Adds two initializers to `ThrowingStub`: `init(defaultReturnValue:resultQueue:)` and
+`init(defaultError:resultQueue:)`. These initializers enable cleaner call sites, as in the following
+example:
+
+    // Before
+    mock.doSomethingSuccessfullyStub = ThrowingStub(defaultResult: .success(value))
+    mock.doSomethingUnsuccessfullyStub = ThrowingStub(defaultResult: .failure(error))
+
+    // After
+    mock.doSomethingSuccessfullyStub = ThrowingStub(defaultReturnValue: value)
+    mock.doSomethingUnsuccessfullyStub = ThrowingStub(defaultError: error)
+
+
 ## 1.0.0: September 1, 2025
 
 This is the first release of DevTesting. The initial feature set includes
