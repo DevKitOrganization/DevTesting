@@ -72,7 +72,7 @@ reproducibility.
 ### Dependencies
 
   - **Swift Numerics**: Used for `RealModule` in tests
-  - **Platform Requirements**: iOS 18+, macOS 15+, tvOS 18+, visionOS 2+, watchOS 11+
+  - **Platform Requirements**: Version 26 of Apple's OSes
   - **Swift Version**: Requires Swift 6.2 toolchain
 
 ### Testing Strategy

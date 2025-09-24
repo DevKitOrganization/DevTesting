@@ -1,5 +1,9 @@
 # DevTesting Changelog
 
+## 1.2.0: September 24, 2025
+
+This update bumps the minimum supported version of Apple’s OSes to 26.
+
 
 ## 1.1.0: September 17, 2025
 
