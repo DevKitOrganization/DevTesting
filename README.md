@@ -20,8 +20,7 @@ Testing](https://github.com/swiftlang/swift-testing/).
   - `Stub` and `ThrowingStub` provide stubbing and spying functionality for your mock objects.
 
 
-DevTesting is fully documented and tested and supports iOS 18+, macOS 15+, tvOS 18+, visionOS 2+,
-and watchOS 11+.
+DevTesting is fully documented and tested and supports version 26 of Apple’s OSes.
 
 View our [changelog](CHANGELOG.md) to see what’s new.
 
