@@ -43,6 +43,15 @@ public protocol RandomValueGenerating {
 
     /// The seed used by the random number generator.
     var randomSeed: UInt64 { get set }
+
+    /// The default closed date range when generating random dates.
+    ///
+    /// This range is used by ``randomDate(in:)-(ClosedRange<Date>?)`` when a `nil` range is specified.
+    ///
+    /// The default implementation returns a closed range whose lower bound is the 00:00:00 UTC on 1 January 2001, and
+    /// whose upper bound is 1,577,836,800 seconds (approximately 50 years) later. The specific value of this range may
+    /// change in the future, though it is unlikely to change before 2040.
+    var defaultClosedDateRange: ClosedRange<Date> { get }
 }
 
 
@@ -144,6 +153,32 @@ extension RandomValueGenerating {
             count: count ?? randomInt(in: 16 ... 128),
             using: &randomNumberGenerator
         )
+    }
+
+
+    // MARK: - Dates
+
+    public var defaultClosedDateRange: ClosedRange<Date> {
+        return Date(timeIntervalSinceReferenceDate: 0) ... Date(timeIntervalSinceReferenceDate: 1_577_836_800)
+    }
+
+
+    /// Returns a random date in the specified closed range.
+    ///
+    /// - Parameter range: The closed range in which to create a random value. `range` must not be empty. If `nil`, the
+    ///   default closed date range (``defaultClosedDateRange``) is used.
+    /// - Returns: A random date within the bounds of range.
+    public mutating func randomDate(in range: ClosedRange<Date>? = nil) -> Date {
+        return Date.random(in: range ?? defaultClosedDateRange, using: &randomNumberGenerator)
+    }
+
+
+    /// Returns a random date in the specified half-open range.
+    ///
+    /// - Parameter range: The half-open range in which to create a random value. `range` must not be empty.
+    /// - Returns: A random date within the bounds of range.
+    public mutating func randomDate(in range: Range<Date>) -> Date {
+        return Date.random(in: range, using: &randomNumberGenerator)
     }
 
 

@@ -1,5 +1,22 @@
 # DevTesting Changelog
 
+## 1.3.0: October 2, 2025
+
+Adds functions for randomly generating dates within a specified range.
+
+  - `Date` has been extended with two static functions, both spelled `random(in:using:)`, that
+    generate a random date in either a closed or half-open range.
+  - `RandomValueGenerating` has been extended with a new property requirement and two new functions.
+
+      - The new property is a `ClosedRange<Date>` spelled `defaultClosedDateRange`. This property
+        provides a default closed date range to use when generating random dates. A default
+        implementation is provided.
+      - The two new functions, both spelled `randomDate(in:)`, generate a random date in either a
+        closed or half-open range using the aforementioned `Date` extension. The closed range
+        version’s range parameter is optional. When `nil` is used (the default),
+        `defaultClosedDateRange` is used.
+
+
 ## 1.2.0: September 24, 2025
 
 This update bumps the minimum supported version of Apple’s OSes to 26.

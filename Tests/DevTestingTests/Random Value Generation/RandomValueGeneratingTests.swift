@@ -86,6 +86,40 @@ struct RandomValueGeneratingTests {
 
 
     @Test
+    mutating func randomDateUsesRandomNumberGenerator_halfOpenRange() {
+        let range = Date(timeIntervalSinceReferenceDate: -100_000) ..< Date(timeIntervalSinceReferenceDate: 100_000)
+
+        for _ in iterationRange {
+            let randomDate = generator.randomDate(in: range)
+            let expectedData = Date.random(in: range, using: &rng)
+            #expect(randomDate == expectedData)
+        }
+    }
+
+
+    @Test
+    mutating func randomDateUsesRandomNumberGenerator_closedRange_whenRangeIsNil() {
+        for _ in iterationRange {
+            let randomDate = generator.randomDate(in: generator.defaultClosedDateRange)
+            let expectedData = Date.random(in: generator.defaultClosedDateRange, using: &rng)
+            #expect(randomDate == expectedData)
+        }
+    }
+
+
+    @Test
+    mutating func randomDateUsesRandomNumberGenerator_closedRange_whenRangeIsSpecified() {
+        let range = Date(timeIntervalSinceReferenceDate: -100_000) ... Date(timeIntervalSinceReferenceDate: 100_000)
+
+        for _ in iterationRange {
+            let randomDate = generator.randomDate(in: range)
+            let expectedData = Date.random(in: range, using: &rng)
+            #expect(randomDate == expectedData)
+        }
+    }
+
+
+    @Test
     mutating func randomFloatUsesRandomNumberGenerator_halfOpenRange() {
         for _ in iterationRange {
             let actualFloat16 = generator.random(Float16.self, in: -1000 ..< 1000)
