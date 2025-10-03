@@ -15,6 +15,13 @@
 - ``randomElement(in:)``
 
 
+### Dates
+
+- ``defaultClosedDateRange``
+- ``randomDate(in:)-(ClosedRange<Date>?)``
+- ``randomDate(in:)-(Range<Date>)``
+
+
 ### Numeric Types
 
 - ``randomFloat64(in:)-(Range<Float64>)``
