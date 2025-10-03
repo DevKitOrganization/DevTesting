@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-    /// Returns a random date in the specified range.
+    /// Returns a random date in the specified half-open range.
     ///
     /// - Parameters:
     ///   - range: The closed range in which to create a random value. `range` must not be empty.
@@ -29,7 +29,7 @@ extension Date {
     }
 
 
-    /// Returns a random date in the specified range.
+    /// Returns a random date in the specified closed range.
     ///
     /// - Parameters:
     ///   - range: The half-open range in which to create a random value.

@@ -45,6 +45,7 @@ over how its dependencies behave and providing detailed information about how th
 - ``Swift/BinaryFloatingPoint``
 - ``Swift/CaseIterable``
 - ``Foundation/Data``
+- ``Foundation/Date``
 - ``Swift/Optional``
 - ``Swift/String``
 - ``Foundation/URL``

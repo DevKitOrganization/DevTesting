@@ -4,13 +4,14 @@ DevTesting is a small Swift 6 package that contains useful additions for writing
 Testing](https://github.com/swiftlang/swift-testing/).
 
   - `SeedableRandomNumberGenerator` is a random number generator that can be seeded to enable
-    repeatable tests with random data.
+    repeatable tests with random values.
   - `RandomValueGenerating` uses a seedable random number generator to repeatably generate values in
     your test suite. It logs the seed before every test so that you can debug tests that failed. It
-    also includes convenient functions for generating random data:
+    also includes convenient functions for generating random values:
       - Booleans
       - Case iterables
       - Data
+      - Dates
       - Floating point types
       - Integer types
       - Optionals
