@@ -9,14 +9,22 @@ import Foundation
 import os
 
 /// A stub for a function.
+///
+/// - Note: ``Stub`` and `ThrowingStub` are `Observable`, but the only property that is tracked is ``calls``. Changes to
+///   dependent properties like ``callArguments`` and ``callResults`` can also be tracked, but changes to
+///   ``resultQueue`` and ``defaultResult`` are not.
+@Observable
 public final class ThrowingStub<Arguments, ReturnType, ErrorType> where ErrorType: Error {
     /// A recorded call to the stub.
-    public struct Call {
+    ///
+    /// This type conforms to Sendable, but both properties are `nonisolated(unsafe)`. It is the consumer’s
+    /// responsibility to ensure that the type is used in a safe way.
+    public struct Call: Sendable {
         /// The call’s arguments.
-        public let arguments: Arguments
+        public nonisolated(unsafe) let arguments: Arguments
 
         /// The result of the call.
-        public let result: Result<ReturnType, ErrorType>
+        public nonisolated(unsafe) let result: Result<ReturnType, ErrorType>
     }
 
 
@@ -88,13 +96,16 @@ public final class ThrowingStub<Arguments, ReturnType, ErrorType> where ErrorTyp
     ///
     /// If you just need the call’s arguments, you can use ``callArguments`` instead.
     public var calls: [Call] {
+        access(keyPath: \.calls)
         return mutableProperties.withLockUnchecked { $0.calls }
     }
 
 
     /// Clears the stub’s recorded calls.
     public func clearCalls() {
-        mutableProperties.withLockUnchecked { $0.calls = [] }
+        withMutation(keyPath: \.calls) {
+            mutableProperties.withLockUnchecked { $0.calls = [] }
+        }
     }
 
 
@@ -105,19 +116,21 @@ public final class ThrowingStub<Arguments, ReturnType, ErrorType> where ErrorTyp
     ///
     /// - Parameter arguments: The arguments with which to call the stub.
     public func callAsFunction(_ arguments: Arguments) throws(ErrorType) -> ReturnType {
-        let result = mutableProperties.withLockUnchecked { (properties) in
-            let result =
-                if properties.resultQueue.isEmpty {
-                    properties.defaultResult
-                } else {
-                    properties.resultQueue.removeFirst()
-                }
+        let result = withMutation(keyPath: \.calls) {
+            mutableProperties.withLockUnchecked { (properties) in
+                let result =
+                    if properties.resultQueue.isEmpty {
+                        properties.defaultResult
+                    } else {
+                        properties.resultQueue.removeFirst()
+                    }
 
-            properties.calls.append(
-                .init(arguments: arguments, result: result)
-            )
+                properties.calls.append(
+                    .init(arguments: arguments, result: result)
+                )
 
-            return result
+                return result
+            }
         }
 
         return try result.get()

@@ -1,5 +1,12 @@
 # DevTesting Changelog
 
+## 1.4.0: October 12, 2025
+
+`Stub` and `ThrowingStub` now conform to `Observable`. The only property that is tracked is
+``calls``. Changes to dependent properties like ``callArguments`` and ``callResults`` can also be
+tracked, but changes to ``resultQueue`` and ``defaultResult`` are not.
+
+
 ## 1.3.0: October 2, 2025
 
 Adds functions for randomly generating dates within a specified range.
