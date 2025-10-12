@@ -195,4 +195,90 @@ struct StubTests {
         // queue just for posterity
         #expect(stub.returnValueQueue.isEmpty)
     }
+
+
+    // MARK: - Observable
+
+    @Test
+    func callAsFunctionTriggersObservation() async throws {
+        // set up stub
+        let stub = Stub<String, Int>(defaultReturnValue: 42)
+
+        // set up observations stream
+        let observations = Observations { stub.calls }
+        var iterator = observations.makeAsyncIterator()
+
+        // expect initial empty calls
+        let initialCalls = await iterator.next()
+        #expect(initialCalls?.isEmpty == true)
+
+        // exercise by calling stub
+        _ = stub("first")
+
+        // expect calls updated with first call
+        let callsAfterFirst = await iterator.next()
+        #expect(callsAfterFirst?.count == 1)
+        #expect(callsAfterFirst?.first?.arguments == "first")
+
+        // exercise by calling stub again
+        _ = stub("second")
+
+        // expect calls updated with second call
+        let callsAfterSecond = await iterator.next()
+        #expect(callsAfterSecond?.count == 2)
+        #expect(callsAfterSecond?.last?.arguments == "second")
+    }
+
+
+    @Test
+    func clearCallsTriggersObservation() async throws {
+        // set up stub with some calls
+        let stub = Stub<String, Int>(defaultReturnValue: 42)
+        _ = stub("first")
+        _ = stub("second")
+
+        // set up observations stream
+        let observations = Observations { stub.calls }
+        var iterator = observations.makeAsyncIterator()
+
+        // expect initial calls
+        let initialCalls = await iterator.next()
+        #expect(initialCalls?.count == 2)
+
+        // exercise by clearing calls
+        stub.clearCalls()
+
+        // expect calls cleared
+        let clearedCalls = await iterator.next()
+        #expect(clearedCalls?.isEmpty == true)
+    }
+
+
+    @Test
+    mutating func observability() async {
+        let arguments = [1, 2, 3, 4, 5]
+        let stub = Stub<Int, Void>()
+
+        Task {
+            for value in arguments {
+                try? await Task.sleep(for: .milliseconds(100))
+                stub(value)
+            }
+        }
+
+        let observationTask = Task {
+            var i = 0
+            for await argument in Observations({ stub.callArguments.last }).dropFirst() {
+                #expect(argument == arguments[i])
+                i += 1
+
+                if argument == arguments.count {
+                    break
+                }
+            }
+        }
+
+        await observationTask.value
+        #expect(stub.callArguments == arguments)
+    }
 }

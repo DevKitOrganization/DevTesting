@@ -23,7 +23,7 @@ print_error() {
 
 # Platforms to test
 PLATFORMS=(
-    "iOS Simulator,name=iPhone 16 Pro"
+    "iOS Simulator,name=iPhone 17 Pro"
     "macOS"
     "tvOS Simulator,name=Apple TV 4K"
     "watchOS Simulator,name=Apple Watch Series 10"
