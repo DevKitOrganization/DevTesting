@@ -1,5 +1,12 @@
 # DevTesting Changelog
 
+## 1.5.0: October 22, 2025
+
+The `Date.random(in:using:)` functions now use `BinaryFloatingPoint.randomPrintable(in:using:)` to
+generate time intervals. This should lead to greater reliability when converting the time intervals
+of generated dates into strings.
+
+
 ## 1.4.0: October 12, 2025
 
 `Stub` and `ThrowingStub` now conform to `Observable`. The only property that is tracked is
