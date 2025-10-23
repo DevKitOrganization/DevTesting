@@ -21,7 +21,7 @@ extension Date {
         let lowerBound = range.lowerBound.timeIntervalSinceReferenceDate
         let upperBound = range.upperBound.timeIntervalSinceReferenceDate
         return Date(
-            timeIntervalSinceReferenceDate: .random(
+            timeIntervalSinceReferenceDate: .randomPrintable(
                 in: lowerBound ..< upperBound,
                 using: &generator
             )
@@ -42,7 +42,7 @@ extension Date {
         let lowerBound = range.lowerBound.timeIntervalSinceReferenceDate
         let upperBound = range.upperBound.timeIntervalSinceReferenceDate
         return Date(
-            timeIntervalSinceReferenceDate: .random(
+            timeIntervalSinceReferenceDate: .randomPrintable(
                 in: lowerBound ... upperBound,
                 using: &generator
             )
