@@ -151,7 +151,7 @@ extension RandomValueGenerating {
     public mutating func randomData(count: Int? = nil) -> Data {
         return Data.random(
             count: count ?? randomInt(in: 16 ... 128),
-            using: &randomNumberGenerator
+            using: &randomNumberGenerator,
         )
     }
 
@@ -191,7 +191,7 @@ extension RandomValueGenerating {
     ///   - range: The half-open range in which to create a random value.
     public mutating func random<FloatingPoint>(
         _ type: FloatingPoint.Type,
-        in range: Range<FloatingPoint>
+        in range: Range<FloatingPoint>,
     ) -> FloatingPoint
     where FloatingPoint: BinaryFloatingPoint, FloatingPoint.RawSignificand: FixedWidthInteger {
         return FloatingPoint.randomPrintable(in: range, using: &randomNumberGenerator)
@@ -217,7 +217,7 @@ extension RandomValueGenerating {
     ///   - range: The closed range in which to create a random value.
     public mutating func random<FloatingPoint>(
         _ type: FloatingPoint.Type,
-        in range: ClosedRange<FloatingPoint>
+        in range: ClosedRange<FloatingPoint>,
     ) -> FloatingPoint
     where FloatingPoint: BinaryFloatingPoint, FloatingPoint.RawSignificand: FixedWidthInteger {
         return FloatingPoint.randomPrintable(in: range, using: &randomNumberGenerator)
@@ -243,7 +243,7 @@ extension RandomValueGenerating {
     ///   - range: The half-open range in which to create a random value.
     public mutating func random<Integer>(
         _ type: Integer.Type,
-        in range: Range<Integer>
+        in range: Range<Integer>,
     ) -> Integer
     where Integer: FixedWidthInteger {
         return Integer.random(in: range, using: &randomNumberGenerator)
@@ -269,7 +269,7 @@ extension RandomValueGenerating {
     ///   - range: The closed range in which to create a random value.
     public mutating func random<Integer>(
         _ type: Integer.Type,
-        in range: ClosedRange<Integer>
+        in range: ClosedRange<Integer>,
     ) -> Integer
     where Integer: FixedWidthInteger {
         return Integer.random(in: range, using: &randomNumberGenerator)
@@ -310,7 +310,7 @@ extension RandomValueGenerating {
     public mutating func randomAlphanumericString(count: Int? = nil) -> String {
         return String.randomAlphanumeric(
             count: count ?? Int.random(in: 5 ... 10, using: &randomNumberGenerator),
-            using: &randomNumberGenerator
+            using: &randomNumberGenerator,
         )
     }
 
@@ -324,7 +324,7 @@ extension RandomValueGenerating {
     public mutating func randomBasicLatinString(count: Int? = nil) -> String {
         return String.randomBasicLatin(
             count: count ?? Int.random(in: 5 ... 10, using: &randomNumberGenerator),
-            using: &randomNumberGenerator
+            using: &randomNumberGenerator,
         )
     }
 
@@ -339,12 +339,12 @@ extension RandomValueGenerating {
     ///     chosen.
     public mutating func randomString(
         withCharactersFrom characters: some Collection<Character>,
-        count: Int? = nil
+        count: Int? = nil,
     ) -> String {
         return String.random(
             withCharactersFrom: characters,
             count: count ?? Int.random(in: 5 ... 10, using: &randomNumberGenerator),
-            using: &randomNumberGenerator
+            using: &randomNumberGenerator,
         )
     }
 
@@ -370,12 +370,12 @@ extension RandomValueGenerating {
     ///     include query items or not.
     public mutating func randomURL(
         includeFragment: Bool? = nil,
-        includeQueryItems: Bool? = nil
+        includeQueryItems: Bool? = nil,
     ) -> URL {
         return URL.random(
             includeFragment: includeFragment,
             includeQueryItems: includeQueryItems,
-            using: &randomNumberGenerator
+            using: &randomNumberGenerator,
         )
     }
 
@@ -391,12 +391,12 @@ extension RandomValueGenerating {
     ///     include query items or not.
     public mutating func randomURLComponents(
         includeFragment: Bool? = nil,
-        includeQueryItems: Bool? = nil
+        includeQueryItems: Bool? = nil,
     ) -> URLComponents {
         return URLComponents.random(
             includeFragment: includeFragment,
             includeQueryItems: includeQueryItems,
-            using: &randomNumberGenerator
+            using: &randomNumberGenerator,
         )
     }
 

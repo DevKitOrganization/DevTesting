@@ -30,7 +30,7 @@ extension URLComponents {
     public static func random(
         includeFragment: Bool? = nil,
         includeQueryItems: Bool? = nil,
-        using generator: inout some RandomNumberGenerator
+        using generator: inout some RandomNumberGenerator,
     ) -> URLComponents {
         var urlComponents = URLComponents()
 
@@ -47,7 +47,7 @@ extension URLComponents {
         let pathComponents = Array(count: Int.random(in: 1 ... 5, using: &generator)) {
             String.randomAlphanumeric(
                 count: Int.random(in: 1 ... 5, using: &generator),
-                using: &generator
+                using: &generator,
             )
         }
         urlComponents.path = "/\(pathComponents.joined(separator: "/"))"
@@ -56,7 +56,7 @@ extension URLComponents {
         if includeFragment ?? Bool.random(using: &generator) {
             urlComponents.fragment = String.randomAlphanumeric(
                 count: Int.random(in: 3 ... 5, using: &generator),
-                using: &generator
+                using: &generator,
             )
         }
 

@@ -52,12 +52,12 @@ public final class ThrowingStub<Arguments, ReturnType, ErrorType> where ErrorTyp
     ///   - resultQueue: A queue of call results to use. If empty, `defaultResult` is used.
     public init(
         defaultResult: Result<ReturnType, ErrorType>,
-        resultQueue: [Result<ReturnType, ErrorType>] = []
+        resultQueue: [Result<ReturnType, ErrorType>] = [],
     ) {
         self.mutableProperties = .init(
             uncheckedState: .init(
                 defaultResult: defaultResult,
-                resultQueue: resultQueue
+                resultQueue: resultQueue,
             )
         )
     }
@@ -146,7 +146,7 @@ extension ThrowingStub {
     ///   - resultQueue: A queue of call results to use. If empty, `defaultResult` is used.
     public convenience init(
         defaultReturnValue: ReturnType,
-        resultQueue: [Result<ReturnType, ErrorType>] = []
+        resultQueue: [Result<ReturnType, ErrorType>] = [],
     ) {
         self.init(defaultResult: .success(defaultReturnValue), resultQueue: resultQueue)
     }
@@ -159,7 +159,7 @@ extension ThrowingStub {
     ///   - resultQueue: A queue of call results to use. If empty, `defaultResult` is used.
     public convenience init(
         defaultError: ErrorType,
-        resultQueue: [Result<ReturnType, ErrorType>] = []
+        resultQueue: [Result<ReturnType, ErrorType>] = [],
     ) {
         self.init(defaultResult: .failure(defaultError), resultQueue: resultQueue)
     }
@@ -204,7 +204,7 @@ extension ThrowingStub where ReturnType == Void {
     public convenience init(defaultError: ErrorType?, errorQueue: [ErrorType?] = []) {
         self.init(
             defaultResult: defaultError.map(Result.failure(_:)) ?? .success(()),
-            resultQueue: errorQueue.map { $0.map(Result.failure(_:)) ?? .success(()) }
+            resultQueue: errorQueue.map { $0.map(Result.failure(_:)) ?? .success(()) },
         )
     }
 
@@ -273,7 +273,7 @@ extension ThrowingStub where ErrorType == Never {
     public convenience init(defaultReturnValue: ReturnType, returnValueQueue: [ReturnType]) {
         self.init(
             defaultResult: .success(defaultReturnValue),
-            resultQueue: returnValueQueue.map(Result.success(_:))
+            resultQueue: returnValueQueue.map(Result.success(_:)),
         )
     }
 

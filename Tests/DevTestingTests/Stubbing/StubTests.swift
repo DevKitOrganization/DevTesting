@@ -19,7 +19,7 @@ struct StubTests {
 
         let stub = ThrowingStub<String, Int, HashableError>(
             defaultResult: defaultResult,
-            resultQueue: resultQueue
+            resultQueue: resultQueue,
         )
 
         #expect(stub.defaultResult == defaultResult)
@@ -37,7 +37,7 @@ struct StubTests {
 
         let stub = ThrowingStub<String, Int, HashableError>(
             defaultReturnValue: 10,
-            resultQueue: resultQueue
+            resultQueue: resultQueue,
         )
 
         #expect(stub.defaultResult == .success(defaultReturnValue))
@@ -55,7 +55,7 @@ struct StubTests {
 
         let stub = ThrowingStub<String, Int, HashableError>(
             defaultError: defaultError,
-            resultQueue: resultQueue
+            resultQueue: resultQueue,
         )
 
         #expect(stub.defaultResult == .failure(defaultError))
@@ -89,7 +89,7 @@ struct StubTests {
 
         let stub = ThrowingStub<String, Int, HashableError>(
             defaultResult: defaultResult,
-            resultQueue: resultQueue
+            resultQueue: resultQueue,
         )
 
         let arguments = (0 ... 5).map(String.init(_:))

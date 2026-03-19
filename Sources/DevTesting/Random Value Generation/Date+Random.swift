@@ -16,14 +16,14 @@ extension Date {
     /// - Returns: A random date within the bounds of range.
     public static func random(
         in range: Range<Date>,
-        using generator: inout some RandomNumberGenerator
+        using generator: inout some RandomNumberGenerator,
     ) -> Date {
         let lowerBound = range.lowerBound.timeIntervalSinceReferenceDate
         let upperBound = range.upperBound.timeIntervalSinceReferenceDate
         return Date(
             timeIntervalSinceReferenceDate: .randomPrintable(
                 in: lowerBound ..< upperBound,
-                using: &generator
+                using: &generator,
             )
         )
     }
@@ -37,14 +37,14 @@ extension Date {
     /// - Returns: A random date within the bounds of range.
     public static func random(
         in range: ClosedRange<Date>,
-        using generator: inout some RandomNumberGenerator
+        using generator: inout some RandomNumberGenerator,
     ) -> Date {
         let lowerBound = range.lowerBound.timeIntervalSinceReferenceDate
         let upperBound = range.upperBound.timeIntervalSinceReferenceDate
         return Date(
             timeIntervalSinceReferenceDate: .randomPrintable(
                 in: lowerBound ... upperBound,
-                using: &generator
+                using: &generator,
             )
         )
     }

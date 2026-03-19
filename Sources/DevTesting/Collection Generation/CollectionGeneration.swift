@@ -15,7 +15,7 @@ extension Array {
     ///   - elementGenerator: A closure that generates array elements.
     public init<ErrorType>(
         count: Int,
-        elementGenerator: () throws(ErrorType) -> Element
+        elementGenerator: () throws(ErrorType) -> Element,
     ) throws(ErrorType) where ErrorType: Error {
         try self.init(count: count) { (_) throws(ErrorType) in
             try elementGenerator()
@@ -31,7 +31,7 @@ extension Array {
     ///     generated.
     public init<ErrorType>(
         count: Int,
-        elementGenerator: (Int) throws(ErrorType) -> Element
+        elementGenerator: (Int) throws(ErrorType) -> Element,
     ) throws(ErrorType) where ErrorType: Error {
         self.init()
         reserveCapacity(count)
@@ -56,7 +56,7 @@ extension Dictionary {
     ///   - keyPairGenerator: A closure that generates key-value pairs.
     public init<ErrorType>(
         count: Int,
-        keyPairGenerator: () throws(ErrorType) -> (Key, Value)
+        keyPairGenerator: () throws(ErrorType) -> (Key, Value),
     ) throws(ErrorType) where ErrorType: Error {
         self.init(minimumCapacity: count)
 
@@ -79,7 +79,7 @@ extension Set {
     ///   - elementGenerator: A closure that generates set elements.
     public init<ErrorType>(
         count: Int,
-        elementGenerator: () throws(ErrorType) -> Element
+        elementGenerator: () throws(ErrorType) -> Element,
     ) throws(ErrorType) where ErrorType: Error {
         self.init(minimumCapacity: count)
 

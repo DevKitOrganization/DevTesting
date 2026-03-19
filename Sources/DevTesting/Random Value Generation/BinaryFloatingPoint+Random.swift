@@ -22,7 +22,7 @@ extension BinaryFloatingPoint where RawSignificand: FixedWidthInteger {
     ///   - generator: The random number generator to use when creating the new random value.
     public static func randomPrintable(
         in range: Range<Self>,
-        using generator: inout some RandomNumberGenerator
+        using generator: inout some RandomNumberGenerator,
     ) -> Self {
         let subdivisions = 256
 
@@ -49,7 +49,7 @@ extension BinaryFloatingPoint where RawSignificand: FixedWidthInteger {
     ///   - generator: The random number generator to use when creating the new random value.
     public static func randomPrintable(
         in range: ClosedRange<Self>,
-        using generator: inout some RandomNumberGenerator
+        using generator: inout some RandomNumberGenerator,
     ) -> Self {
         let subdivisions = 256
 

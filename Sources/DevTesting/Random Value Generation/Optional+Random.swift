@@ -16,7 +16,7 @@ extension Optional {
     ///   - generator: The random number generator to use when creating the new random optional.
     public static func random(
         _ value: @autoclosure () -> Wrapped,
-        using generator: inout some RandomNumberGenerator
+        using generator: inout some RandomNumberGenerator,
     ) -> Self {
         return Bool.random(using: &generator) ? value() : nil
     }

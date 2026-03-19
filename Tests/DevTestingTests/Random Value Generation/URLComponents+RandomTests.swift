@@ -55,7 +55,7 @@ struct URLComponents_RandomTests {
     @Test(arguments: [(false, false), (false, true), (true, false), (true, true)])
     func randomReturnsCorrectComponentsWhenIncludeArgumentsAreNonNil(
         includeFragment: Bool,
-        includeQueryItems: Bool
+        includeQueryItems: Bool,
     ) throws {
         let iterationCount = 10
         var rng = SystemRandomNumberGenerator()
@@ -64,7 +64,7 @@ struct URLComponents_RandomTests {
             let components = URLComponents.random(
                 includeFragment: includeFragment,
                 includeQueryItems: includeQueryItems,
-                using: &rng
+                using: &rng,
             )
 
             // The properties should be non-nil if and only if the corresponding boolean is true
