@@ -25,7 +25,7 @@ struct URL_RandomTests {
     )
     func randomReturnsIsSameAsURLComponents(
         includeFragment: Bool? = nil,
-        includeQueryItems: Bool? = nil
+        includeQueryItems: Bool? = nil,
     ) throws {
         let seed = UInt64.random(in: 0 ... .max)
 
@@ -35,13 +35,13 @@ struct URL_RandomTests {
         let url = URL.random(
             includeFragment: includeFragment,
             includeQueryItems: includeQueryItems,
-            using: &rng1
+            using: &rng1,
         )
 
         let expectedURL = URLComponents.random(
             includeFragment: includeFragment,
             includeQueryItems: includeQueryItems,
-            using: &rng2
+            using: &rng2,
         ).url
 
         #expect(url == expectedURL)

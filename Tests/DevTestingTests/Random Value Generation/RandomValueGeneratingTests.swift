@@ -352,7 +352,7 @@ struct RandomValueGeneratingTests {
             let expectedString = String.random(
                 withCharactersFrom: "🤓👾💀💩",
                 count: Int.random(in: 5 ... 10, using: &rng),
-                using: &rng
+                using: &rng,
             )
             #expect(randomString == expectedString)
         }
@@ -399,13 +399,13 @@ struct RandomValueGeneratingTests {
         for _ in iterationRange {
             let randomURL = generator.randomURL(
                 includeFragment: includeFragment,
-                includeQueryItems: includeQueryItems
+                includeQueryItems: includeQueryItems,
             )
 
             let expectedURL = URL.random(
                 includeFragment: includeFragment,
                 includeQueryItems: includeQueryItems,
-                using: &rng
+                using: &rng,
             )
 
             #expect(randomURL == expectedURL)
@@ -430,13 +430,13 @@ struct RandomValueGeneratingTests {
         for _ in iterationRange {
             let randomURLComponents = generator.randomURLComponents(
                 includeFragment: includeFragment,
-                includeQueryItems: includeQueryItems
+                includeQueryItems: includeQueryItems,
             )
 
             let expectedURLComponents = URLComponents.random(
                 includeFragment: includeFragment,
                 includeQueryItems: includeQueryItems,
-                using: &rng
+                using: &rng,
             )
 
             #expect(randomURLComponents == expectedURLComponents)

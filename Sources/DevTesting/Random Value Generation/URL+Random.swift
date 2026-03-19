@@ -22,12 +22,12 @@ extension URL {
     public static func random(
         includeFragment: Bool? = nil,
         includeQueryItems: Bool? = nil,
-        using generator: inout some RandomNumberGenerator
+        using generator: inout some RandomNumberGenerator,
     ) -> URL {
         return URLComponents.random(
             includeFragment: includeFragment,
             includeQueryItems: includeQueryItems,
-            using: &generator
+            using: &generator,
         ).url!
     }
 }

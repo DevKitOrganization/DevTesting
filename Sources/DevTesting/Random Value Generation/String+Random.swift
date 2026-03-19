@@ -18,7 +18,7 @@ extension String {
     public static func random(
         withCharactersFrom characters: some Collection<Character>,
         count: Int,
-        using generator: inout some RandomNumberGenerator
+        using generator: inout some RandomNumberGenerator,
     ) -> String {
         precondition(!characters.isEmpty || count == 0, "count must be 0 if characters is empty")
         guard count > 0 else {
@@ -39,14 +39,14 @@ extension String {
     ///   - generator: The random number generator to use when creating the new random string.
     public static func randomAlphanumeric(
         count: Int,
-        using generator: inout some RandomNumberGenerator
+        using generator: inout some RandomNumberGenerator,
     ) -> String {
         return random(
             withCharactersFrom: characters(
-                fromUnicodeScalarRanges: 0x30 ... 0x39, 0x41 ... 0x5a, 0x61 ... 0x7a
+                fromUnicodeScalarRanges: 0x30 ... 0x39, 0x41 ... 0x5a, 0x61 ... 0x7a,
             ),
             count: count,
-            using: &generator
+            using: &generator,
         )
     }
 
@@ -65,12 +65,12 @@ extension String {
     ///   - generator: The random number generator to use when creating the new random string.
     public static func randomBasicLatin(
         count: Int,
-        using generator: inout some RandomNumberGenerator
+        using generator: inout some RandomNumberGenerator,
     ) -> String {
         return random(
             withCharactersFrom: characters(fromUnicodeScalarRanges: 0x20 ... 0x7e),
             count: count,
-            using: &generator
+            using: &generator,
         )
     }
 
