@@ -23,17 +23,11 @@ repository.
   - **Swift format configuration**: Uses `.swift-format` file with 4-space indentation and 120
     character line length
 
-### Platform Testing
-
-  - **Test all platforms**: `Scripts/test-all-platforms` (runs tests on iOS, macOS, tvOS, and
-    watchOS simulators using xcodebuild)
-
 ### Git Hooks
 
-  - **Install git hooks**: `Scripts/install-git-hooks` (installs both pre-commit and pre-push
-    hooks)
-  - **Pre-commit hook**: Automatically runs `Scripts/lint` before each commit
-  - **Pre-push hook**: Automatically runs `Scripts/test-all-platforms` before each push
+  - **Install git hooks**: `Scripts/install-git-hooks` (installs pre-push hook; supports git
+    worktrees)
+  - **Pre-push hook**: Automatically runs `Scripts/lint` before each push
 
 ### Documentation
 
@@ -80,8 +74,28 @@ reproducibility.
   - **Test Plans**: Uses `DevTesting.xctestplan` for organized test execution
   - **Coverage Target**: Aims for 99%+ test coverage
   - **Platform Testing**: Tests run on iOS, macOS, tvOS, and watchOS simulators
-  - **CI/CD**: GitHub Actions workflow runs builds on macOS only (iOS, tvOS, and watchOS builds
-    disabled due to stability/reliability issues)
+  - **CI/CD**: GitHub Actions workflow runs builds on iOS, macOS, tvOS, and watchOS
+
+### Code Style Conventions
+
+  - Always use `where` clauses to declare constraints on generic parameters
+  - Prefer `Float64` over `Double` and `Float32` over `Float`
+  - Always attribute files to the current user, not Claude (e.g., "Created by <current user>
+    on mm/dd/yyyy")
+
+#### Code Formatting and Spacing
+
+  - **2 blank lines between major sections** including:
+      - Between the last property declaration and first function declaration
+      - Between all function/computed property implementations at the same scope level
+      - Between top-level type declarations (class, struct, enum, protocol, extension)
+      - Before MARK comments that separate major sections
+  - **1 blank line** for minor separations:
+      - Between property declarations and nested type definitions
+      - Between all function definitions in protocols
+      - After headers in documentation
+      - After MARK comments that separate major sections
+  - **File endings**: All Swift files must end with exactly one blank line
 
 ### Documentation Standards
 
