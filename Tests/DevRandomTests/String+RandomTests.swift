@@ -1,6 +1,6 @@
 //
 //  String+RandomTests.swift
-//  DevTesting
+//  DevRandom
 //
 //  Created by Prachi Gauriar on 3/5/25.
 //
@@ -8,7 +8,7 @@
 import Foundation
 import Testing
 
-@testable import DevTesting
+@testable import DevRandom
 
 struct String_RandomTests {
     #if os(macOS)

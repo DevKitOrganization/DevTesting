@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "6847A465-7D34-481F-B686-0C0F6FDCA81E",
+      "id" : "717C346A-A54A-4908-A46D-8D205B1707EA",
       "name" : "Test Scheme Action",
       "options" : {
 
@@ -13,19 +13,20 @@
       "targets" : [
         {
           "containerPath" : "container:",
-          "identifier" : "DevTesting",
-          "name" : "DevTesting"
+          "identifier" : "DevRandom",
+          "name" : "DevRandom"
         }
       ]
     },
+    "performanceAntipatternCheckerEnabled" : true,
     "testInteropMode" : "none"
   },
   "testTargets" : [
     {
       "target" : {
         "containerPath" : "container:",
-        "identifier" : "DevTestingTests",
-        "name" : "DevTestingTests"
+        "identifier" : "DevRandomTests",
+        "name" : "DevRandomTests"
       }
     }
   ],

@@ -1,11 +1,11 @@
 //
 //  Date+RandomTests.swift
-//  DevTesting
+//  DevRandom
 //
 //  Created by Prachi Gauriar on 10/2/25.
 //
 
-import DevTesting
+import DevRandom
 import Foundation
 import Testing
 

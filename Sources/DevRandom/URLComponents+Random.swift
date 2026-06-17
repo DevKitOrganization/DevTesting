@@ -1,6 +1,6 @@
 //
 //  URLComponents+Random.swift
-//  DevTesting
+//  DevRandom
 //
 //  Created by Prachi Gauriar on 3/14/25.
 //
@@ -44,7 +44,8 @@ extension URLComponents {
         urlComponents.host = "\(subdomain).\(domain).\(tld)"
 
         // Generate the path
-        let pathComponents = Array(count: Int.random(in: 1 ... 5, using: &generator)) {
+        let pathComponentCount = Int.random(in: 1 ... 5, using: &generator)
+        let pathComponents = (0 ..< pathComponentCount).map { _ in
             String.randomAlphanumeric(
                 count: Int.random(in: 1 ... 5, using: &generator),
                 using: &generator,
@@ -62,7 +63,8 @@ extension URLComponents {
 
         // Include query items if needed
         if includeQueryItems ?? Bool.random(using: &generator) {
-            urlComponents.queryItems = Array(count: Int.random(in: 1 ... 5, using: &generator)) {
+            let queryItemCount = Int.random(in: 1 ... 5, using: &generator)
+            urlComponents.queryItems = (0 ..< queryItemCount).map { _ in
                 return .random(using: &generator)
             }
         }

@@ -42,9 +42,9 @@ jobs:
       DEV_BUILDS: DevBuilds/Sources
       OTHER_XCBEAUTIFY_FLAGS: --renderer github-actions
       XCCOV_PRETTY_VERSION: 1.2.0
-      XCODE_SCHEME: DevTesting
+      XCODE_SCHEME: DevTesting-Package
       XCODE_DESTINATION: ${{ matrix.xcode_destination }}
-      XCODE_TEST_PLAN: DevTesting
+      XCODE_TEST_PLAN: DevTesting-Package
       XCODE_TEST_PRODUCTS_PATH: .build/DevTesting.xctestproducts
 
     steps:
@@ -108,7 +108,7 @@ jobs:
           | tar -xz
           chmod +x xccovPretty
 
-          xcrun xccov view --report .build/DevTesting_test-without-building.xcresult --json \
+          xcrun xccov view --report .build/DevTesting-Package_test-without-building.xcresult --json \
           | ./xccovPretty --github-comment \
           > .build/xccovPretty-${{ matrix.platform }}.output
 
