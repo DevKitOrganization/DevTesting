@@ -1,11 +1,11 @@
 //
 //  UUID+RandomTests.swift
-//  DevTesting
+//  DevRandom
 //
 //  Created by Prachi Gauriar on 4/28/25.
 //
 
-import DevTesting
+import DevRandom
 import Foundation
 import Testing
 

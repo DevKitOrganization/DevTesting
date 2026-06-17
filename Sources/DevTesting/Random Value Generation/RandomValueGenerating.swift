@@ -5,6 +5,7 @@
 //  Created by Prachi Gauriar on 3/9/25.
 //
 
+@_exported import DevRandom
 import Foundation
 import Testing
 import os

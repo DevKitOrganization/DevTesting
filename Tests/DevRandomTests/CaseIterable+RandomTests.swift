@@ -1,11 +1,11 @@
 //
 //  CaseIterable+RandomTests.swift
-//  DevTesting
+//  DevRandom
 //
 //  Created by Prachi Gauriar on 3/5/25.
 //
 
-import DevTesting
+import DevRandom
 import Foundation
 import RealModule
 import Testing
@@ -34,4 +34,14 @@ struct CaseIterable_RandomTests {
             #expect(caseProportion.isApproximatelyEqual(to: 1 / 3, absoluteTolerance: 0.03))
         }
     }
+}
+
+
+private enum UninhabitedEnum: CaseIterable {}
+
+
+private enum InhabitedEnum: CaseIterable {
+    case case1
+    case case2
+    case case3
 }

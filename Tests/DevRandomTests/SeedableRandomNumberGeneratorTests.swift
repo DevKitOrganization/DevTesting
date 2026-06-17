@@ -1,11 +1,11 @@
 //
 //  SeedableRandomNumberGeneratorTests.swift
-//  DevTesting
+//  DevRandom
 //
 //  Created by Prachi Gauriar on 3/5/25.
 //
 
-import DevTesting
+import DevRandom
 import Foundation
 import Testing
 

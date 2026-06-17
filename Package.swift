@@ -19,7 +19,11 @@ let package = Package(
     products: [
         .library(
             name: "DevTesting",
-            targets: ["DevTesting"]
+            targets: ["DevRandom", "DevTesting"]
+        ),
+        .library(
+            name: "DevRandom",
+            targets: ["DevRandom"]
         )
     ],
     dependencies: [
@@ -27,14 +31,28 @@ let package = Package(
     ],
     targets: [
         .target(
+            name: "DevRandom",
+            swiftSettings: swiftSettings
+        ),
+        .testTarget(
+            name: "DevRandomTests",
+            dependencies: [
+                "DevRandom",
+                .product(name: "RealModule", package: "swift-numerics"),
+            ],
+            swiftSettings: swiftSettings
+        ),
+        .target(
             name: "DevTesting",
+            dependencies: [
+                "DevRandom"
+            ],
             swiftSettings: swiftSettings
         ),
         .testTarget(
             name: "DevTestingTests",
             dependencies: [
                 "DevTesting",
-                .product(name: "RealModule", package: "swift-numerics"),
             ],
             swiftSettings: swiftSettings
         ),

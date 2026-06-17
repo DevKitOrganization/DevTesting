@@ -1,8 +1,8 @@
 {
   "configurations" : [
     {
-      "id" : "6847A465-7D34-481F-B686-0C0F6FDCA81E",
-      "name" : "Test Scheme Action",
+      "id" : "97925C16-7D6D-4B58-A72B-C9DB5D29EB3C",
+      "name" : "Configuration 1",
       "options" : {
 
       }
@@ -15,6 +15,11 @@
           "containerPath" : "container:",
           "identifier" : "DevTesting",
           "name" : "DevTesting"
+        },
+        {
+          "containerPath" : "container:",
+          "identifier" : "DevRandom",
+          "name" : "DevRandom"
         }
       ]
     },
@@ -26,6 +31,13 @@
         "containerPath" : "container:",
         "identifier" : "DevTestingTests",
         "name" : "DevTestingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "DevRandomTests",
+        "name" : "DevRandomTests"
       }
     }
   ],

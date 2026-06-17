@@ -1,5 +1,14 @@
 # DevTesting Changelog
 
+## 1.6.0: June 16, 2026
+
+This release moves DevTesting’s seedable random number generator and random value generation
+extensions into its own library, called DevRandom. This enables consumers to use random value
+generation outside of tests. DevTesting uses DevRandom to implement its `RandomValueGenerating`
+type, and re-exports DevRandom so that existing consumers do not need to add any import
+statements to existing files.
+
+
 ## 1.5.0: October 22, 2025
 
 The `Date.random(in:using:)` functions now use `BinaryFloatingPoint.randomPrintable(in:using:)` to

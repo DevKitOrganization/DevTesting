@@ -458,3 +458,10 @@ struct RandomValueGeneratingTests {
 private struct RandomValueGenerator: RandomValueGenerating {
     var randomNumberGenerator = makeRandomNumberGenerator()
 }
+
+
+private enum InhabitedEnum: CaseIterable {
+    case case1
+    case case2
+    case case3
+}
