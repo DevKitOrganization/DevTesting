@@ -1,5 +1,25 @@
 # DevTesting Changelog
 
+## 1.7.0: November 13, 2026
+
+This release makes it possible to create stubs that return a placeholder value until they’re
+configured, so that a test that calls an unconfigured stub fails instead of crashing.
+
+  - The new `DefaultStubValueProviding` protocol lets a type provide a default value for stubs that
+    return it. DevTesting conforms common standard library and Foundation types, including
+    `Array`, `Bool`, `Data`, `Date`, `Dictionary`, floating point and integer types, `Optional`,
+    `Set`, `String`, `URL`, and `UUID`.
+  - `Stub` has a new `init()` that returns the default stub value until configured, available when
+    its return type conforms to `DefaultStubValueProviding`.
+  - `ThrowingStub` has a new `init()` for stubs whose error type is `any Error`. It throws an
+    unspecified error until configured.
+  - The new `ArbitraryError` type is an error for tests that just need an error to throw.
+    `RandomValueGenerating` has a new `randomError(fileID:function:)` function that creates
+    one with a random description beginning with the calling file and function. If your tests
+    already extend `RandomValueGenerating` with a function named `randomError`, you may need to
+    rename or remove it to avoid ambiguous calls.
+
+
 ## 1.6.0: June 16, 2026
 
 This release moves DevTesting’s seedable random number generator and random value generation

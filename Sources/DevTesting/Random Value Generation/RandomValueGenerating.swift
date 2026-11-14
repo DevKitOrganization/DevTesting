@@ -183,6 +183,24 @@ extension RandomValueGenerating {
     }
 
 
+    // MARK: - Errors
+
+    /// Returns an arbitrary error with a random description.
+    ///
+    /// The description begins with the file ID and function that called this function, which makes it easier to tell
+    /// where an error came from when a test fails.
+    ///
+    /// - Parameters:
+    ///   - fileID: The file ID of the caller. Defaults to the caller’s file ID.
+    ///   - function: The name of the calling function. Defaults to the caller’s function name.
+    public mutating func randomError(
+        fileID: StaticString = #fileID,
+        function: StaticString = #function,
+    ) -> ArbitraryError {
+        return ArbitraryError(description: "\(fileID):\(function)_\(randomAlphanumericString())")
+    }
+
+
     // MARK: - Numeric Types
 
     /// Returns a random binary floating point of the specified type within the specified range.

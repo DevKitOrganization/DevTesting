@@ -112,20 +112,55 @@ This pattern is especially valuable when writing assertions about how your code 
 function, as you can easily access specific parameters from the recorded calls.
 
 
-### Force unwrapping stub properties
+### Default-initialized stub properties
 
-Stub properties are declared as implicitly unwrapped optionals to fail fast when stubs are not set
-up correctly. By using implicitly unwrapped optionals, failing to properly mock a required
-dependency will crash immediately at test time, making it obvious what went wrong.
+Where possible, initialize stub properties with a default stub, so that a test that calls a stub
+it didn’t configure gets a value instead of crashing:
 
     final class MockFileManager: FileManager {
-        var documentsDirectoryStub: Stub<Void, URL>!
+        // Returns URL.defaultStubValue until configured
+        var documentsDirectoryStub = Stub<Void, URL>()
 
-        // If this stub isn’t initialized and the property is accessed, the test will crash
-        // immediately with a clear error
-        var documentsDirectory: URL {
-            documentsDirectoryStub()
+        // Throws an unspecified error until configured
+        var loadContentStub = ThrowingStub<String, Data, any Error>()
+
+        …
+    }
+
+A crash in an unconfigured stub can be hard to trace, especially when tests run in parallel, and it
+ends the whole test run. A default value lets the test continue, and in most cases fail, without
+taking other tests down with it.
+
+`Stub()` is available when the stub’s return type conforms to ``DefaultStubValueProviding``.
+DevTesting provides conformances for common standard library and Foundation types, using values
+that are recognizable placeholders where possible, such as `1_234_567_890` and `"default stub"`.
+Conform your own types by composing their properties’ defaults:
+
+    extension Person: DefaultStubValueProviding {
+        static var defaultStubValue: Person {
+            return Person(
+                givenName: .defaultStubValue,
+                familyName: .defaultStubValue,
+                age: .defaultStubValue,
+            )
         }
+    }
+
+A default value only keeps an unconfigured stub from crashing. It isn’t meant to be realistic, so
+tests should still configure every stub whose return value they depend on. Similarly, a throwing
+stub that throws `any Error` throws by default, so a test of a success path must configure it.
+
+
+### Force unwrapping stub properties
+
+When a stub’s return type has no default value, or the stub throws a specific error type, declare
+the stub property as an implicitly unwrapped optional. Tests must configure these stubs before
+they’re called, or the test crashes.
+
+    final class MockFileManager: FileManager {
+        var fileHandleStub: Stub<String, FileHandle>!
+
+        …
     }
 
 
@@ -153,6 +188,18 @@ For ``ThrowingStub``, you can configure default success or failure behavior:
 
     // Always throw the same error
     fileManager.loadContentStub = ThrowingStub(defaultResult: .failure(FileError.notFound))
+
+When a test only needs _an_ error, rather than a specific one, use an ``ArbitraryError``. You can
+create one with a description, or with
+``RandomValueGenerating/randomError(fileID:function:)``, which gives it a random description
+that begins with the calling file and function:
+
+    let error = randomError()
+    fileManager.loadContentStub = ThrowingStub(defaultError: error)
+
+    #expect(throws: error) {
+        try documentLoader.loadDocument(at: path)
+    }
 
 
 ### Result queues

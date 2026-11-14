@@ -22,6 +22,11 @@
 - ``randomDate(in:)-(Range<Date>)``
 
 
+### Errors
+
+- ``randomError(fileID:function:)``
+
+
 ### Numeric Types
 
 - ``randomFloat64(in:)-(Range<Float64>)``

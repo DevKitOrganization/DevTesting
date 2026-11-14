@@ -34,6 +34,8 @@ detailed information about how those dependencies were used.
 - <doc:UsingStubs>
 - ``Stub``
 - ``ThrowingStub``
+- ``DefaultStubValueProviding``
+- ``ArbitraryError``
 
 ### Collection Generation Extensions
 

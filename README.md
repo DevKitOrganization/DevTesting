@@ -11,6 +11,7 @@ and DevRandom. The primary library for automated testing is DevTesting. It provi
       - Case iterables
       - Data
       - Dates
+      - Errors
       - Floating point types
       - Integer types
       - Optionals
@@ -18,6 +19,9 @@ and DevRandom. The primary library for automated testing is DevTesting. It provi
       - UUIDs
       - URLs, URL components, and URL query items
   - `Stub` and `ThrowingStub`, which provide stubbing and spying functionality for your mocks.
+    Stubs whose return types conform to `DefaultStubValueProviding` can be created without
+    arguments, so that unconfigured stubs return placeholder values instead of crashing.
+  - `ArbitraryError`, an error type for tests that just need an error to throw.
 
 DevRandom is a supporting library that includes the core random value generation code. It is used by
 DevTesting, but can also be used in your application for random value generation.
