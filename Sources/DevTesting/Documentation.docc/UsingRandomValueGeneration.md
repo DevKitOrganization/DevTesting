@@ -361,7 +361,7 @@ types. For example:
         }
 
 
-        mutating func randomError() -> MyAppError {
+        mutating func randomAppError() -> MyAppError {
             return MyAppError(code: randomInt(in: 100 ..< 1000))
         }
 

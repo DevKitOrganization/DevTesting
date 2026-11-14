@@ -120,6 +120,23 @@ struct RandomValueGeneratingTests {
 
 
     @Test
+    mutating func randomErrorUsesRandomNumberGenerator() {
+        for _ in iterationRange {
+            let error = generator.randomError(fileID: "Module/File.swift", function: "function()")
+            let expectedSuffix = String.randomAlphanumeric(count: Int.random(in: 5 ... 10, using: &rng), using: &rng)
+            #expect(error.description == "Module/File.swift:function()_\(expectedSuffix)")
+        }
+    }
+
+
+    @Test
+    mutating func randomErrorUsesCallerByDefault() {
+        let error = generator.randomError()
+        #expect(error.description.hasPrefix("DevTestingTests/RandomValueGeneratingTests.swift:\(#function)_"))
+    }
+
+
+    @Test
     mutating func randomFloatUsesRandomNumberGenerator_halfOpenRange() {
         for _ in iterationRange {
             let actualFloat16 = generator.random(Float16.self, in: -1000 ..< 1000)
