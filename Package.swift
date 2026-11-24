@@ -1,10 +1,12 @@
-// swift-tools-version: 6.2
+// swift-tools-version: 6.4
 
 import PackageDescription
 
 let swiftSettings: [SwiftSetting] = [
     .enableUpcomingFeature("ExistentialAny"),
+    .enableUpcomingFeature("ImmutableWeakCaptures"),
     .enableUpcomingFeature("MemberImportVisibility"),
+    .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
 ]
 
 let package = Package(
@@ -19,12 +21,12 @@ let package = Package(
     products: [
         .library(
             name: "DevTesting",
-            targets: ["DevRandom", "DevTesting"]
+            targets: ["DevRandom", "DevTesting"],
         ),
         .library(
             name: "DevRandom",
-            targets: ["DevRandom"]
-        )
+            targets: ["DevRandom"],
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-numerics", from: "1.0.0")
@@ -32,7 +34,7 @@ let package = Package(
     targets: [
         .target(
             name: "DevRandom",
-            swiftSettings: swiftSettings
+            swiftSettings: swiftSettings,
         ),
         .testTarget(
             name: "DevRandomTests",
@@ -40,21 +42,21 @@ let package = Package(
                 "DevRandom",
                 .product(name: "RealModule", package: "swift-numerics"),
             ],
-            swiftSettings: swiftSettings
+            swiftSettings: swiftSettings,
         ),
         .target(
             name: "DevTesting",
             dependencies: [
                 "DevRandom"
             ],
-            swiftSettings: swiftSettings
+            swiftSettings: swiftSettings,
         ),
         .testTarget(
             name: "DevTestingTests",
             dependencies: [
-                "DevTesting",
+                "DevTesting"
             ],
-            swiftSettings: swiftSettings
+            swiftSettings: swiftSettings,
         ),
-    ]
+    ],
 )
