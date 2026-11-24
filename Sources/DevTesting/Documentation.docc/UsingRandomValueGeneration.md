@@ -17,8 +17,8 @@ automatically logs the random seeds used in each test, allowing you to reproduce
 exactly.
 
 The random value generation system integrates seamlessly with Swift Testing, automatically logging
-seeds both to Apple’s Unified Logging system and as test attachments. This means that when a test 
-fails, you have multiple ways to capture and reuse the seed that caused the failure, making 
+seeds both to Apple’s Unified Logging system and as test attachments. This means that when a test
+fails, you have multiple ways to capture and reuse the seed that caused the failure, making
 debugging much more straightforward than with traditional random testing approaches.
 
 In this guide, we’ll explore how to use DevTesting’s random value generation effectively in your
@@ -168,7 +168,7 @@ DevTesting includes generators for common Foundation types:
     }
 
 The ``RandomValueGenerating/randomURL(includeFragment:includeQueryItems:)`` function creates
-realistic URLs with random schemes,  hosts, paths, and optionally query parameters and 
+realistic URLs with random schemes, hosts, paths, and optionally query parameters and
 fragments.
 
 
@@ -191,7 +191,7 @@ Work with collections and enumerations easily:
         let emptyResult = randomElement(in: [Int]())   // nil
     }
 
-Note that both ``RandomValueGenerating/randomElement(in:)`` and 
+Note that both ``RandomValueGenerating/randomElement(in:)`` and
 ``RandomValueGenerating/randomCase(of:)`` return optionals because they return `nil` when called on
 empty collections.
 
@@ -234,7 +234,7 @@ seeds and provides multiple ways to reproduce test failures.
 
 ### Automatic seed logging
 
-Every time you create a random number generator with 
+Every time you create a random number generator with
 ``RandomValueGenerating/makeRandomNumberGenerator(seed:)``, DevTesting automatically logs the seed
 being used. This logging happens in two places:
 
@@ -376,8 +376,9 @@ types. For example:
         }
     }
 
-These extensions become immediately available in any test that conforms to ``RandomValueGenerating``,
-allowing you to generate complex domain objects with a single function call.
+These extensions become immediately available in any test that conforms to
+``RandomValueGenerating``, allowing you to generate complex domain objects with a single function
+call.
 
 
 ### Combining existing functions
@@ -446,7 +447,8 @@ The key benefits include:
   - **Comprehensive coverage**: Test your code with a wide variety of inputs automatically
   - **Reproducible failures**: Every random test run can be exactly reproduced using logged seeds
   - **Easy debugging**: Failed tests become as debuggable as deterministic tests
-  - **Extensible design**: Create domain-specific random generators that match your application’s data
+  - **Extensible design**: Create domain-specific random generators that match your application’s
+    data
 
 Whether you’re testing simple functions with varied inputs or complex workflows with intricate data
 structures, DevTesting’s random value generation gives you the tools to write thorough, maintainable
