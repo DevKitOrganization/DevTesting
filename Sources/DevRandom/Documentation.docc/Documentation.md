@@ -15,17 +15,17 @@ random value generation to types in the Swift Standard Library and Foundation.
 
 ### Generating Random Values
 
-- ``SeedableRandomNumberGenerator``
+  - ``SeedableRandomNumberGenerator``
 
 ### Random Value Generation Extensions
 
-- ``Swift/BinaryFloatingPoint``
-- ``Swift/CaseIterable``
-- ``Foundation/Data``
-- ``Foundation/Date``
-- ``Swift/Optional``
-- ``Swift/String``
-- ``Foundation/URL``
-- ``Foundation/URLComponents``
-- ``Foundation/URLQueryItem``
-- ``Foundation/UUID``
+  - ``Swift/BinaryFloatingPoint``
+  - ``Swift/CaseIterable``
+  - ``Foundation/Data``
+  - ``Foundation/Date``
+  - ``Swift/Optional``
+  - ``Swift/String``
+  - ``Foundation/URL``
+  - ``Foundation/URLComponents``
+  - ``Foundation/URLQueryItem``
+  - ``Foundation/UUID``

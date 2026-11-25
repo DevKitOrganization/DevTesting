@@ -26,19 +26,19 @@ detailed information about how those dependencies were used.
 
 ### Generating Random Values
 
-- <doc:UsingRandomValueGeneration>
-- ``RandomValueGenerating``
+  - <doc:UsingRandomValueGeneration>
+  - ``RandomValueGenerating``
 
 ### Stubbing
 
-- <doc:UsingStubs>
-- ``Stub``
-- ``ThrowingStub``
-- ``DefaultStubValueProviding``
-- ``ArbitraryError``
+  - <doc:UsingStubs>
+  - ``Stub``
+  - ``ThrowingStub``
+  - ``DefaultStubValueProviding``
+  - ``ArbitraryError``
 
 ### Collection Generation Extensions
 
-- ``Swift/Array``
-- ``Swift/Dictionary``
-- ``Swift/Set``
+  - ``Swift/Array``
+  - ``Swift/Dictionary``
+  - ``Swift/Set``

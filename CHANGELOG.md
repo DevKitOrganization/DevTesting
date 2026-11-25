@@ -1,5 +1,11 @@
 # DevTesting Changelog
 
+
+## 1.8.0: November 24, 2026
+
+This release requires Swift 6.4 (Xcode 27) to build. There are no other changes.
+
+
 ## 1.7.0: November 13, 2026
 
 This release makes it possible to create stubs that return a placeholder value until they’re
